@@ -1,21 +1,22 @@
-.header {
-  background-color: seagreen;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 60px;
+.weather {
+  position: relative;
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+}
+
+.weather_info {
+  position: absolute;
+  top: 20px;
+  left: 16px;
+  color: #fff;
+  font-size: 36px;
+  line-height: 40px;
+}
+
+.weather_image {
+  width: 100%;
+
+}
+
+.main {
   padding: 0 20px;
-
-}
-
-.header__logo {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-.header__avatar-logo {
-  display: flex;
-  gap: 20px;
-  align-items: center;
 }
