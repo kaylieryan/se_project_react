@@ -1,4 +1,6 @@
 import './Header.css'
+import avatarLogo from '../../images/avatar.svg'
+import wtwrLogo from '../../images/logo.svg'
 
 const Header = () => {
   console.log("Header");
@@ -7,7 +9,7 @@ const Header = () => {
     <header className="header">
       <div className="header__logo">
         <div>
-          <img src="/images/logo.svg" alt="logo" />
+          <img src={wtwrLogo} alt="logo" />
         </div>
         <div>Date</div>
       </div>
@@ -17,7 +19,7 @@ const Header = () => {
         </div>
         <div>Name</div>
         <div>
-          <img src="/images/avatar.svg" alt="avatar" />
+          <img src={avatarLogo} alt="avatar" />
         </div>
       </div>
     </header>
