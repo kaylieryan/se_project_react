@@ -4,7 +4,10 @@
   align-items: center;
   min-height: 60px;
   padding: 0 20px;
-
+  font-family: "CabinetGrotesk-Bold", serif;
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 700;
 }
 
 .header__logo {
@@ -17,4 +20,16 @@
   display: flex;
   gap: 20px;
   align-items: center;
+}
+
+.header__add-clothes-button {
+  font-family: "CabinetGrotesk-Bold", serif;
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.header__add-clothes-button:hover {
+  color: rgba(0, 0, 0, 0.6);
 }
