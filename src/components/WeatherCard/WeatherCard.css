@@ -1,10 +1,9 @@
 .weather {
   position: relative;
   font-family: "CabinetGrotesk-Bold", sans-serif;
-  
 }
 
-.weather_info {
+.weather__info {
   position: absolute;
   top: 20px;
   left: 16px;
@@ -14,10 +13,38 @@
   font-weight: 700;
 }
 
-.weather_image {
+.weather__image {
   width: 100%;
 }
 
-.main {
-  padding: 0 20px;
+@media all and (max-width: 1015px) {
+  .weather__info {
+    font-size: 20px;
+    top: 15px;
+  }
+
+  .weather__image {
+    height: 80px;
+  }
+}
+
+@media all and (max-width: 660px) {
+  .weather__info {
+    font-size: 15px;
+    top: 13px;
+  }
+
+  .weather__image {
+    height: 80px;
+  }
+}
+
+@media all and (max-width: 450px) {
+  .weather__info {
+    top: 3px;
+  }
+
+  .weather__image {
+    height: 80px;
+  }
 }
