@@ -2,7 +2,7 @@ import "./ItemModal.css";
 
 const ItemModal = ({ selectedCard, onClose }) => {
   return (
-    <div className={`modal`}>
+    <div className={`item_modal`}>
       <div className="modal__content-item">
         <img
           src={selectedCard.link}
