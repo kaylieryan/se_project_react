@@ -62,10 +62,10 @@ function App() {
   useEffect(() => {
     getForecastWeather()
       .then((data) => {
-        const fahrenheitTemperature = parseWeatherData(data);
+        const temperature = parseWeatherData(data);
         const city = parseLocation(data);
 
-        setTemp(fahrenheitTemperature);
+        setTemp(temperature);
         setLocation(city);
       })
       .catch((err) => {

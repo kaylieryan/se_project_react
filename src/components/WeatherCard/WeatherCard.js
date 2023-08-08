@@ -6,7 +6,7 @@ const WeatherCard = ({ day, type, weatherTemp = "" }) => {
     return option.day === day && option.type === type;
   });
 
-  // const imageSourceUrl = imageSource[0].url || "";
+  //const imageSourceUrl = imageSource[0].url || "";
   const imageSourceUrl = imageSource ? weatherOptions[0].url || "" : "";
 
   return (
