@@ -1,25 +1,25 @@
 import "./ItemModal.css";
-//import { useEffect } from "react";
 
 const ItemModal = ({ selectedCard, onClose }) => {
   return (
-    <div className={`item_modal`}>
-      <div className="item_modal_content">
-        <button
-          type="button"
-          onClick={onClose}
-          className="item_modal__close_button"
-        />
+    <div className={`modal`}>
+      <div className="modal__content-item">
         <img
           src={selectedCard.link}
           alt={selectedCard.name}
-          className="item_modal__item_image"
+          className="modal__image"
         />
-        <div className="item_modal__caption">
-          <div className="item_modal__caption_name">{selectedCard.name}</div>
-          <div className="item_modal__caption_weather">
+        <button
+          type="button"
+          onClick={onClose}
+          className="modal__close-button-item"
+        />
+        <div className="modal__info-section-container"></div>
+        <div className="modal__info">
+          <p className="modal__info-name">{selectedCard.name}</p>
+          <p className="modal__info-weather">
             Weather: {selectedCard.weather}
-          </div>
+          </p>
         </div>
       </div>
     </div>
