@@ -7,7 +7,7 @@ const currentDate = new Date().toLocaleDateString("default", {
   day: "numeric",
 });
 
-const Header = ({ onCreateModal, city }) => {
+const Header = ({ onCreateModal }) => {
   return (
     <header className="header">
       <div className="header__logo">
@@ -15,7 +15,7 @@ const Header = ({ onCreateModal, city }) => {
           <img src={wtwrLogo} alt="logo" />
         </div>
         <div>
-          {currentDate}, {city}
+          {currentDate}
         </div>
       </div>
       <div className="header__avatar-logo">

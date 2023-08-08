@@ -1,3 +1,4 @@
+import React from "react";
 import "./ItemModal.css";
 
 const ItemModal = ({ selectedCard, onClose }) => {

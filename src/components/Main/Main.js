@@ -1,5 +1,5 @@
 import ItemCard from "../ItemCard/ItemCard";
-import WeatherCard from "../WeatherCard/WeatherCard.js";
+import WeatherCard from "../WeatherCard/WeatherCard";
 import { defaultClothingItems } from "../../utils/constants.js";
 import "./Main.css";
 import { useMemo } from "react";
@@ -21,7 +21,7 @@ function Main({ weatherTemp, onSelectCard }) {
 
   return (
     <main className="main">
-      <WeatherCard day={true} type="cloudy" weatherTemp={weatherTemp} />
+      <WeatherCard day={true} type="fog" weatherTemp={weatherTemp} />
       <section className="clothing" id="clothing-section">
         <div className="clothing__title">
           Today is {weatherTemp}° F / You may want to wear:
