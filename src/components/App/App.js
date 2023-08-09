@@ -22,9 +22,43 @@ function App() {
   };
 
   const handleSelectedCard = (card) => {
-    setActiveModal("preview");
+    setActiveModal("previewModal");
     setSelectedCard(card);
   };
+
+  useEffect(() => {
+    const handleEscClose = (evt) => {
+      if (evt.key === "Escape") {
+        {
+          handleCloseModal();
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleClickClose = (evt) => {
+      if (
+        evt.target.classList.contains("item_modal") ||
+        evt.target.classList.contains("modal")
+      ) {
+        console.log("handleClickClose");
+        handleCloseModal();
+      }
+    };
+
+    document.addEventListener("click", handleClickClose);
+
+    return () => {
+      document.removeEventListener("click", handleClickClose);
+    };
+  }, []);
 
   useEffect(() => {
     getForecastWeather()
