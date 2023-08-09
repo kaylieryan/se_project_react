@@ -27,11 +27,11 @@ function App() {
   };
 
   useEffect(() => {
+    if (!activeModal) return;
+
     const handleEscClose = (evt) => {
       if (evt.key === "Escape") {
-        {
-          handleCloseModal();
-        }
+        handleCloseModal();
       }
     };
 
@@ -40,9 +40,11 @@ function App() {
     return () => {
       document.removeEventListener("keydown", handleEscClose);
     };
-  }, []);
+  }, [activeModal]);
 
   useEffect(() => {
+    if (!activeModal) return;
+
     const handleClickClose = (evt) => {
       if (
         evt.target.classList.contains("item_modal") ||
@@ -58,7 +60,7 @@ function App() {
     return () => {
       document.removeEventListener("click", handleClickClose);
     };
-  }, []);
+  }, [activeModal]);
 
   useEffect(() => {
     getForecastWeather()
