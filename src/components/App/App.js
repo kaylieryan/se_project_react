@@ -12,7 +12,6 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
-  
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -28,44 +27,11 @@ function App() {
   };
 
   useEffect(() => {
-    const handleEscClose = (event) => {
-      if (event.key === "Escape") {
-        handleCloseModal("");
-      }
-    };
-
-    document.addEventListener("keydown", handleEscClose);
-
-    return () => {
-      document.removeEventListener("keydown", handleEscClose);
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleClickClose = (event) => {
-      if (
-        event.target.classList.contains("modal") ||
-        event.target.classList.contains("item_modal")
-      ) {
-        console.log("handleClickClose");
-      }
-    };
-
-    document.addEventListener("click", handleClickClose);
-
-    return () => {
-      document.removeEventListener("click", handleClickClose);
-    };
-  }, []);
-
-  useEffect(() => {
     getForecastWeather()
       .then((data) => {
         const temperature = parseWeatherData(data);
-        
 
         setTemp(temperature);
-        
       })
       .catch((err) => {
         console.error(err);
@@ -78,11 +44,7 @@ function App() {
       <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
       <Footer />
       {activeModal === "create" && (
-        <ModalWithForm
-          title="New Garment"
-          onClose={handleCloseModal}
-          modalType={"add_garment"}
-          buttonText={"Add garment"}>
+        <ModalWithForm title="New Garment" onClose={handleCloseModal}>
           <div className="modal__input_wrapper">
             <label className="modal__label_input">
               Name{" "}
