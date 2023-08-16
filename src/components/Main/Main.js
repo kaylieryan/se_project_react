@@ -2,9 +2,11 @@ import ItemCard from "../ItemCard/ItemCard";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import { defaultClothingItems } from "../../utils/constants.js";
 import "./Main.css";
-import { useMemo } from "react";
+import { useMemo, useContext } from "react";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext"; 
 
 function Main({ weatherTemp, onSelectCard }) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const weatherType = useMemo(() => {
     if (weatherTemp >= 86) {
       return "hot";
