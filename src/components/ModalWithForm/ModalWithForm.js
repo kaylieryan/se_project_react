@@ -2,11 +2,12 @@ import "./ModalWithForm.css";
 
 const ModalWithForm = ({
   children,
-  buttonText = "Add garment",
+  buttonText = "Submit",
   title,
   onClose,
   name,
   onSubmit,
+  isOpen,
 }) => {
   return (
     <div className={`modal modal_type_${name}`}>
