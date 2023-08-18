@@ -4,6 +4,7 @@ import Main from "../Main/Main.js";
 import Footer from "../Footer/Footer.js";
 import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import Profile from "../Profile/Profile";
 import { useEffect, useState } from "react";
 import { getForecastWeather } from "../../utils/WeatherApi";
 import { parseWeatherData } from "../../utils/WeatherApi";
