@@ -5,15 +5,21 @@ import { defaultClothingItems } from "../../../utils/constants";
 
 const ClothingSection = ({ onSelectCard }) => {
   return (
-    <section className="clothingsection">
+    <section className="clothing__section">
       {}
-      <div className="clothingsection__items">
+      <div className="clothing__section-title-wrapper">
+       <p className="clothing__section-title">Your Items</p>
+        <button className="clothing__section-button" type="text">
+          + Add new
+        </button>
+      </div>
+      <div className="clothing__section-card">
         {defaultClothingItems.map((item) => (
           <ItemCard
             key={item.id}
             item={item}
             onSelectCard={onSelectCard}
-            className="clothingsection__item"
+            className="clothing__section-item"
           />
         ))}
       </div>
