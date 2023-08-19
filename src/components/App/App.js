@@ -6,16 +6,19 @@ import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import { useEffect, useState } from "react";
-import { getForecastWeather } from "../../utils/WeatherApi";
-import { parseWeatherData } from "../../utils/WeatherApi";
+import { getForecastWeather, parseWeatherData } from "../../utils/WeatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { Switch, Route } from "react-router-dom";
+import { deleteItem, getItems, postItem } from "../../utils/Api/Api";
+import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
-  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState([]);
+  const [clothingItems, setClothingItems] = useState([]);
+  // const [location, setLocation] = useState("");
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -35,9 +38,49 @@ function App() {
     setSelectedCard(card);
   };
 
-  const handleAddItemSubmit = (values) => {
-    console.log(values);
+  const handleOpenConfirmationModal = (card) => {
+    setActiveModal("confirmation-opened");
   };
+
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
+  const onAddItem = (values) => {
+    console.log(values);
+    postItem(values)
+      .then((data) => {
+        setClothingItems([...clothingItems, data]);
+        handleCloseModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const handleDeleteCard = (card) => {
+    deleteItem(card.id)
+      .then(() => {
+        const newClothingItems = clothingItems.filter((cards) => {
+          return cards.id !== card.id;
+        });
+        setClothingItems(newClothingItems);
+        handleCloseModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  // const handleAddItemSubmit = (values) => {
+  //   console.log(values);
+  // };
 
   useEffect(() => {
     if (!activeModal) return;
@@ -94,11 +137,19 @@ function App() {
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
         <Header onCreateModal={handleCreateModal} />
         <Switch>
-          <Route path="/profile">
-            <Profile onSelectCard={handleSelectedCard}></Profile>
-          </Route>
           <Route exact path="/">
-            <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
+            <Main
+              weatherTemp={temp}
+              onSelectCard={handleSelectedCard}
+              clothingItems={clothingItems}
+              onClose={handleCloseModal}
+            />
+          </Route>
+          <Route path="/profile">
+            <Profile
+              onSelectCard={handleSelectedCard}
+              onCreateModal={handleCreateModal}
+              clothingItems={clothingItems}></Profile>
           </Route>
         </Switch>
         <Footer />
@@ -106,11 +157,22 @@ function App() {
           <AddItemModal
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "create"}
-            onAddItem={handleAddItemSubmit}
+            onAddItem={onAddItem}
+          />
+        )}
+        {activeModal === "confirmation-opened" && (
+          <DeleteConfirmationModal
+            onClose={handleCloseModal}
+            card={selectedCard}
+            handleDeleteCard={handleDeleteCard}
           />
         )}
         {activeModal === "previewModal" && (
-          <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} />
+          <ItemModal
+            selectedCard={selectedCard}
+            onClose={handleCloseModal}
+            handleOpenConfirm={handleOpenConfirmationModal}
+          />
         )}
       </CurrentTemperatureUnitContext.Provider>
     </div>
