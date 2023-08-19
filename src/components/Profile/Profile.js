@@ -1,6 +1,6 @@
 import React from "react";
-import Sidebar from "../Sidebar/Sidebar";
-import ClothingSection from "../ClothingSection/ClothingSection";
+import Sidebar from "./Sidebar/Sidebar";
+import ClothingSection from "./ClothingSection/ClothingSection";
 
 import "./Profile.css";
 

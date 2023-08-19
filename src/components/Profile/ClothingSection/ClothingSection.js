@@ -1,7 +1,7 @@
 import React from "react";
 import "./ClothingSection.css";
-import ItemCard from "../ItemCard/ItemCard";
-import { defaultClothingItems } from "../../utils/constants";
+import ItemCard from "../../ItemCard/ItemCard";
+import { defaultClothingItems } from "../../../utils/constants";
 
 const ClothingSection = ({ onSelectCard }) => {
   return (
@@ -22,4 +22,3 @@ const ClothingSection = ({ onSelectCard }) => {
 };
 
 export default ClothingSection;
-  
