@@ -30,7 +30,7 @@ const Header = ({ onCreateModal }) => {
             + Add clothes
           </button>
         </div>
-        <Link to="/profile">Terrence Tegegne</Link>
+        <Link to="/profile">Kaylie Ryan</Link>
         <div>
           <img src={avatarLogo} alt="avatar" />
         </div>
