@@ -18,8 +18,8 @@ export function getItems() {
 }
 
 // POST Items
-export function postItems({ name, link, weather }) {
-  console.log(postItems);
+export function postItem({ name, link, weather }) {
+  console.log(postItem);
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -34,7 +34,7 @@ export function postItems({ name, link, weather }) {
 }
 
 // DELETE Items
-export function deleteItems(id) {
+export function deleteItem(id) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
