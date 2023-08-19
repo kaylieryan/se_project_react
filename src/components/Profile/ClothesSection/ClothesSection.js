@@ -23,7 +23,7 @@ function ClothesSection({ onSelectCard, onCreateModal, clothingItems }) {
             item={item}
             key={item?.id ?? item?._id}
             onSelectCard={onSelectCard}
-          /> 
+          />
         ))}
       </div>
     </div>
