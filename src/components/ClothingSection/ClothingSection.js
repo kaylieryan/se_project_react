@@ -6,11 +6,6 @@ import { defaultClothingItems } from "../../utils/constants";
 const ClothingSection = ({ onSelectCard }) => {
   return (
     <section className="clothingsection">
-      {/* <div className="clothingsection__cards"> */}
-      {/* <button className="clothing__section-button" type="text">
-          + Add new
-        </button>
-      </div> */}
       <div className="clothingsection__cards">
         {defaultClothingItems.map((item) => (
           <ItemCard
