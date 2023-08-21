@@ -69,7 +69,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
             value="hot"
             name="temp_range"
             className="modal__radio_button"
-            onChage={handleWeatherChange}
+            onChange={handleWeatherChange}
           />
 
           <label className="modal__label_radio">Hot</label>

@@ -9,12 +9,9 @@ const checkResponse = (response) => {
 };
 
 // GET Items
-export function getItems() {
-  return fetch(`${baseUrl}/items`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(checkResponse);
+export const getItems = () => {
+  const clothingApi = fetch(`${baseUrl}/items`).then(checkResponse);
+  return clothingApi;
 }
 
 // POST Items

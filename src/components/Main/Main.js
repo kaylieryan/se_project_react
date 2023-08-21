@@ -5,13 +5,21 @@ import "./Main.css";
 import { useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherTemp, onSelectCard }) {
+function Main({ weatherTemp, onSelectCard, clothingItems }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 75;
 
-  const getWeatherType = (temp) => {
+  const getWeatherType = () => {
     if (currentTemperatureUnit === "C") {
-      temp = (temp * 9) / 5 + 32;
-    }
+      if (temp >= 30) {
+        return "hot";
+      } else if (temp >= 19 && temp <= 29) {
+        return "warm";
+      } else if (temp <= 18) {
+        return "cold";
+      }
+    } 
+
     if (temp >= 86) {
       return "hot";
     } else if (temp >= 66 && temp <= 85) {
@@ -21,10 +29,9 @@ function Main({ weatherTemp, onSelectCard }) {
     }
   };
 
-  const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
-  const weatherType = getWeatherType(temp);
+  const weatherType = getWeatherType();
 
-  const filteredCards = defaultClothingItems.filter((item) => {
+  const filteredCards = defaultClothingItems?.filter((item) => {
     return item.weather.toLowerCase() === weatherType;
   });
 
@@ -33,7 +40,7 @@ function Main({ weatherTemp, onSelectCard }) {
       <WeatherCard day={true} type="fog" weatherTemp={temp} />
       <section className="clothing" id="clothing-section">
         <div className="clothing__title">
-          Today is {temp}° {currentTemperatureUnit} / You may want to wear:{" "}
+          Today is {temp}°{currentTemperatureUnit} / You may want to wear:{" "}
         </div>
         <div className="clothing__items">
           {filteredCards.map((item) => (

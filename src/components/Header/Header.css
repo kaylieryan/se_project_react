@@ -16,6 +16,14 @@
   align-items: center;
 }
 
+.header__logo-image {
+  cursor: pointer;
+}
+
+.header__logo-image:hover {
+  opacity: 0.8;
+}
+
 .header__avatar-logo {
   display: flex;
   gap: 20px;
@@ -32,6 +40,21 @@
 
 .header__add-clothes-button:hover {
   color: rgba(0, 0, 0, 0.6);
+}
+
+.header__profile-link {
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+}
+
+.header__profile-link:hover {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.header__profile-link:visited {
+  color: #000;
+  text-decoration: none;
 }
 
 @media all and (max-width: 660px) {
