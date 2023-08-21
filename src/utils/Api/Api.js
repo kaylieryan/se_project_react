@@ -1,12 +1,11 @@
 const baseUrl =
   "https://my-json-server.typicode.com/kaylieryan/se_project_react";
 
-const checkResponse = (res) => {
+const processServerResponse = (res) => {
   if (res.ok) {
     return res.json();
-  } else {
-    return Promise.reject(`Error: ${res.status}`);
   }
+  return Promise.reject(`Error: ${res.status}`);
 };
 
 export const removeItems = (selectedCard) => {
@@ -15,7 +14,7 @@ export const removeItems = (selectedCard) => {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then(checkResponse);
+  }).then(processServerResponse);
   return deleteItems;
 };
 
@@ -25,7 +24,7 @@ export const fetchItems = () => {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then(checkResponse);
+  }).then(processServerResponse);
   return getItems;
 };
 
@@ -36,7 +35,7 @@ export const loadItems = ({ name, link, weather }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ id: 99, name, imageUrl: link, weather }),
-  }).then(checkResponse);
+  }).then(processServerResponse);
 
   return postItems;
 };
