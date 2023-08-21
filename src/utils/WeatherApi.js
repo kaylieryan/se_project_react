@@ -26,10 +26,5 @@ export const parseWeatherData = (data) => {
   return weather;
 };
 
-export const parseLocation = (data) => {
-  const city = data.name;
-  return city;
-};
-
 //weather.temperature.F = ` ${Math.round(data.main.temp)}°F`;
 //weather.temperature.C = ` ${Math.round((data.main.temp - 32) * 5/9)}°C`;
