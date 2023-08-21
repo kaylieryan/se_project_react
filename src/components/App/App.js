@@ -9,8 +9,8 @@ import { useEffect, useState } from "react";
 import { getForecastWeather, parseWeatherData } from "../../utils/WeatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { Switch, Route } from "react-router-dom";
-import { deleteItem, getItems, postItem } from "../../utils/Api/Api";
-//import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
+import { removeItems, fetchItems, loadItems } from "../../utils/Api/Api";
+import DeleteModal from "../DeleteModal/DeleteModal";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -32,40 +32,37 @@ function App() {
     setSelectedCard(card);
   };
 
-  useEffect(() => {
-    getItems()
+  const onAddItem = (values) => {
+    loadItems(values)
       .then((data) => {
-        setClothingItems(data);
+        setClothingItems([...clothingItems, data]);
+        handleCloseModal();
       })
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  };
+
+  const handleItemCard = (selectedCard) => {
+    setActiveModal("previewModal");
+    setSelectedCard(selectedCard);
+  };
+
+  const handleActiveCreateModal = () => {
+    setActiveModal("create");
+  };
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
-  const handleAddItemSubmit = (values) => {
-    postItem(values)
-      .then((data) => {
-        setClothingItems([...clothingItems, data]);
-        handleCloseModal();
-      })
-      .catch((error) => {
-        console.error(error.status);
-      });
-  };
-
-  const handleDeleteCard = (card) => {
-    console.log(card);
-    deleteItem(card._id)
+  const handleDeleteButton = (cardElement) => {
+    removeItems(cardElement)
       .then(() => {
-        const newClothingItems = clothingItems.filter((item) => {
-          return item._id !== card._id;
+        const newClothingItems = clothingItems.filter((cards) => {
+          return cards._id !== cardElement;
         });
-        console.log(newClothingItems);
         setClothingItems(newClothingItems);
         handleCloseModal();
       })
@@ -74,9 +71,20 @@ function App() {
       });
   };
 
-  // const handleOpenConfirmationModal = (card) => {
-  //   setActiveModal("confirmation-opened");
-  // };
+  const handleDeleteConfirmationModal = (selectedCard) => {
+    setActiveModal("confirmation-opened");
+    setSelectedCard(selectedCard);
+  };
+
+  useEffect(() => {
+    fetchItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   useEffect(() => {
     if (!activeModal) return;
@@ -133,19 +141,18 @@ function App() {
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
         <Header onCreateModal={handleCreateModal} />
         <Switch>
-          <Route path="/profile">
-            <Profile
-              onSelectCard={handleSelectedCard}
-              onCreateModal={handleCreateModal}
-              clothingItems={clothingItems}></Profile>
-          </Route>
           <Route exact path="/">
             <Main
               weatherTemp={temp}
               onSelectCard={handleSelectedCard}
               clothingItems={clothingItems}
-              onClose={handleCloseModal}
             />
+          </Route>
+          <Route path="/profile">
+            <Profile
+              onSelectCard={handleItemCard}
+              onCreateModal={handleActiveCreateModal}
+              clothingItems={clothingItems}></Profile>
           </Route>
         </Switch>
         <Footer />
@@ -153,7 +160,7 @@ function App() {
           <AddItemModal
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "create"}
-            onAddItem={handleAddItemSubmit}
+            onAddItem={onAddItem}
           />
         )}
 
@@ -161,7 +168,14 @@ function App() {
           <ItemModal
             selectedCard={selectedCard}
             onClose={handleCloseModal}
-            handleDeleteCard={handleDeleteCard}
+            handleDeleteCard={handleDeleteConfirmationModal}
+          />
+        )}
+        {activeModal === "confirmation-opened" && (
+          <DeleteModal
+            onClose={handleCloseModal}
+            card={selectedCard}
+            handleDeleteButton={handleDeleteButton}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>
