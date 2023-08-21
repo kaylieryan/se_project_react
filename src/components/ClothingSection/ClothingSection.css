@@ -1,0 +1,17 @@
+.clothingsection {
+display: flex;
+flex: 1;
+font-size: 20px;
+}
+
+.clothingsection__cards {
+  max-width: 1015px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.clothingsection__card {
+  width: 325px;
+}
