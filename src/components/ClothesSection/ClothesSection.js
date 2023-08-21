@@ -1,9 +1,9 @@
 import React from "react";
-import "./ClothingSection.css";
+import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 import { defaultClothingItems } from "../../utils/constants";
 
-const ClothingSection = ({ onSelectCard }) => {
+const ClothesSection = ({ onSelectCard }) => {
   return (
     <section className="clothingsection">
       <div className="clothingsection__cards">
@@ -20,4 +20,4 @@ const ClothingSection = ({ onSelectCard }) => {
   );
 };
 
-export default ClothingSection;
+export default ClothesSection;
