@@ -1,6 +1,6 @@
 import React from "react";
-import Sidebar from "./Sidebar/Sidebar";
-import ClothingSection from "./ClothingSection/ClothingSection";
+import Sidebar from "../Sidebar/Sidebar";
+import ClothingSection from "../ClothingSection/ClothingSection";
 import avatar from "../../images/avatar.svg";
 import "./Profile.css";
 
@@ -19,12 +19,12 @@ const Profile = ({ onSelectCard }) => {
       </div>
 
       <div className="profile__content">
-      <Sidebar />
-      <ClothingSection
-        onSelectCard={onSelectCard}
-        className="clothingsection"
-      />
-    </div>
+        <Sidebar />
+        <ClothingSection
+          onSelectCard={onSelectCard}
+          className="clothingsection"
+        />
+      </div>
     </div>
   );
 };
