@@ -1,6 +1,6 @@
 import React from "react";
-import Sidebar from "../Sidebar/Sidebar";
-import ClothingSection from "../ClothingSection/ClothingSection";
+import SideBar from "../Sidebar/Sidebar";
+import ClothesSection from "../ClothesSection/ClothesSection";
 import avatar from "../../images/avatar.svg";
 import "./Profile.css";
 
@@ -19,8 +19,8 @@ const Profile = ({ onSelectCard }) => {
       </div>
 
       <div className="profile__content">
-        <Sidebar />
-        <ClothingSection
+        <SideBar />
+        <ClothesSection
           onSelectCard={onSelectCard}
           className="clothingsection"
         />
