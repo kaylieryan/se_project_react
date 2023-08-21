@@ -6,7 +6,7 @@ const ToggleSwitch = () => {
   const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(
     CurrentTemperatureUnitContext
   );
-  
+
   console.log(currentTemperatureUnit);
   return (
     <label className="switch">
@@ -18,20 +18,20 @@ const ToggleSwitch = () => {
       <span
         className={
           currentTemperatureUnit === "F"
-            ? "switch__slider switch__slider-F"
-            : "switch__slider switch__slider-C"
+            ? "switch__slider switch__slider-C"
+            : "switch__slider switch__slider-F"
         }></span>
       <p
         className={`switch__temp-F ${
-          currentTemperatureUnit === "F" && "switch__active"
-        }`}>
-        F
-      </p>
-      <p
-        className={`switch__temp-C ${
           currentTemperatureUnit === "C" && "switch__active"
         }`}>
         C
+      </p>
+      <p
+        className={`switch__temp-C ${
+          currentTemperatureUnit === "F" && "switch__active"
+        }`}>
+        F
       </p>
     </label>
   );
