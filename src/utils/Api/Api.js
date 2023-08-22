@@ -29,13 +29,13 @@ export function fetchItems() {
   return getItems;
 }
 
-export const postClothingItems = ({ name, link, weather }) => {
+export const postClothingItems = ({ name, imageUrl, weather }) => {
   const postItems = fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ id: 99, name, imageUrl: link, weather }),
+    body: JSON.stringify({ name, imageUrl, weather }),
   }).then(processServerResponse);
 
   return postItems;

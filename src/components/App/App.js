@@ -75,7 +75,7 @@ function App() {
     removeItems(selectedCard)
       .then(() => {
         const newClothingItems = clothingItems.filter((cards) => {
-          return cards.id !== selectedCard;
+          return cards.id !== selectedCard.id;
         });
         setClothingItems(newClothingItems);
         handleCloseModal();

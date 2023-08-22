@@ -1,6 +1,6 @@
 import "./ModalWithForm.css";
 
-const ModalWithForm = ({
+function ModalWithForm({
   children,
   buttonText = "Add Garment",
   title,
@@ -8,7 +8,7 @@ const ModalWithForm = ({
   name,
   onSubmit,
   isOpen,
-}) => {
+}) {
   return (
     <div className={`modal modal_type_${name}`}>
       <div className="modal__content">
@@ -26,6 +26,6 @@ const ModalWithForm = ({
       </div>
     </div>
   );
-};
+}
 
 export default ModalWithForm;
