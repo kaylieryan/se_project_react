@@ -1,7 +1,7 @@
 import React from "react";
 import "./DeleteModal.css";
 
-const DeleteModal = ({ onClose, card, handleDeleteButton }) => {
+const DeleteModal = ({ onClose, card, handleDeleteCard }) => {
   return (
     <section className="modal" onClick={onClose}>
       <div className="delete__modal">
@@ -18,7 +18,7 @@ const DeleteModal = ({ onClose, card, handleDeleteButton }) => {
             className="delete__modal-button_confirm"
             type="button"
             onClick={() => {
-              handleDeleteButton(card.id);
+              handleDeleteCard(card.id);
             }}>
             Yes, delete item
           </button>

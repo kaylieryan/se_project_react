@@ -9,17 +9,17 @@ export const processServerResponse = (res) => {
   }
 };
 
-export const removeItems = (id) => {
-  const deleteItems = fetch(`${baseUrl}/items/${id}`, {
+export function removeItems(selectedCard) {
+  const deleteItems = fetch(`${baseUrl}/items/${selectedCard.id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
   }).then(processServerResponse);
   return deleteItems;
-};
+}
 
-export const fetchItems = () => {
+export function fetchItems() {
   const getItems = fetch(`${baseUrl}/items`, {
     method: "GET",
     headers: {
@@ -27,9 +27,9 @@ export const fetchItems = () => {
     },
   }).then(processServerResponse);
   return getItems;
-};
+}
 
-export const loadItems = ({ name, link, weather }) => {
+export const postClothingItems = ({ name, link, weather }) => {
   const postItems = fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -40,9 +40,3 @@ export const loadItems = ({ name, link, weather }) => {
 
   return postItems;
 };
-
-export const api = { removeItems, fetchItems, loadItems };
-
-export default api;
-
-

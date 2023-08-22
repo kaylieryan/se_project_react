@@ -10,7 +10,8 @@ import { getForecastWeather, parseWeatherData } from "../../utils/WeatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { Switch, Route } from "react-router-dom";
 import DeleteModal from "../DeleteModal/DeleteModal";
-import api from "../../utils/Api/Api";
+import { removeItems, fetchItems, postClothingItems } from "../../utils/Api/Api";
+
 
 
 function App() {
@@ -33,26 +34,26 @@ function App() {
     setSelectedCard(card);
   };
 
-  // const onAddItem = (values) => {
-  //   loadItems(values)
-  //     .then((data) => {
-  //       setClothingItems([...clothingItems, data]);
-  //       handleCloseModal();
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
-
-  const onAddItem = (item) => {
-    api
-      .loadItems(item)
-      .then((newCard) => {
-        setClothingItems((cards) => [...cards, newCard]);
+  const handleAddItemSubmit = (values) => {
+    postClothingItems(values)
+      .then((data) => {
+        setClothingItems([data, ...clothingItems]);
         handleCloseModal();
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.error(error);
+      });
   };
+
+  // const onAddItem = (item) => {
+  //   api
+  //     .loadItems(item)
+  //     .then((newCard) => {
+  //       setClothingItems((cards) => [...cards, newCard]);
+  //       handleCloseModal();
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
 
     
 
@@ -70,55 +71,37 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
-  // const handleDeleteButton = (cardElement) => {
-  //   removeItems(cardElement)
-  //     .then(() => {
-  //       const newClothingItems = clothingItems.filter((cards) => {
-  //         return cards.id !== cardElement;
-  //       });
-  //       setClothingItems(newClothingItems);
-  //       handleCloseModal();
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
-
-    const handleDeleteCard = (card) => {
-      api
-        .removeItem(card.id)
+    const handleDeleteCard = (selectedCard) => {
+      removeItems(selectedCard)
         .then(() => {
-          setClothingItems((cards) => cards.filter((c) => c.id !== card.id));
+          const newClothingItems = clothingItems.filter((cards) => {
+            return cards.id !== selectedCard;
+          });
+          setClothingItems(newClothingItems);
           handleCloseModal();
         })
-        .catch((err) => console.log(err));
-      console.log(card);
+        .catch((error) => {
+          console.error(error);
+        });
     };
+
 
   const handleDeleteConfirmationModal = (selectedCard) => {
     setActiveModal("confirmation-opened");
     setSelectedCard(selectedCard);
   };
 
-  // useEffect(() => {
-  //   fetchItems()
-  //     .then((data) => {
-  //       setClothingItems(data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
-
   useEffect(() => {
-    api
-      .fetchItems()
+    fetchItems()
       .then((data) => {
         setClothingItems(data);
       })
-      .catch((err) => console.log(err));
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
 
+  
   useEffect(() => {
     if (!activeModal) return;
 
@@ -193,7 +176,7 @@ function App() {
           <AddItemModal
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "create"}
-            onAddItem={onAddItem}
+            handleAddItemSubmit={handleAddItemSubmit}
           />
         )}
 
