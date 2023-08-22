@@ -9,8 +9,9 @@ import { useEffect, useState } from "react";
 import { getForecastWeather, parseWeatherData } from "../../utils/WeatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { Switch, Route } from "react-router-dom";
-import { removeItems, fetchItems, loadItems } from "../../utils/Api/Api";
 import DeleteModal from "../DeleteModal/DeleteModal";
+import api from "../../utils/Api/Api";
+
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -32,16 +33,28 @@ function App() {
     setSelectedCard(card);
   };
 
-  const onAddItem = (values) => {
-    loadItems(values)
-      .then((data) => {
-        setClothingItems([...clothingItems, data]);
+  // const onAddItem = (values) => {
+  //   loadItems(values)
+  //     .then((data) => {
+  //       setClothingItems([...clothingItems, data]);
+  //       handleCloseModal();
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
+
+  const onAddItem = (item) => {
+    api
+      .loadItems(item)
+      .then((newCard) => {
+        setClothingItems((cards) => [...cards, newCard]);
         handleCloseModal();
       })
-      .catch((error) => {
-        console.error(error);
-      });
+      .catch((error) => console.log(error));
   };
+
+    
 
   const handleItemCard = (selectedCard) => {
     setActiveModal("previewModal");
@@ -57,33 +70,53 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
-  const handleDeleteButton = (cardElement) => {
-    removeItems(cardElement)
-      .then(() => {
-        const newClothingItems = clothingItems.filter((cards) => {
-          return cards._id !== cardElement;
-        });
-        setClothingItems(newClothingItems);
-        handleCloseModal();
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  // const handleDeleteButton = (cardElement) => {
+  //   removeItems(cardElement)
+  //     .then(() => {
+  //       const newClothingItems = clothingItems.filter((cards) => {
+  //         return cards.id !== cardElement;
+  //       });
+  //       setClothingItems(newClothingItems);
+  //       handleCloseModal();
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
+
+    const handleDeleteCard = (card) => {
+      api
+        .removeItem(card.id)
+        .then(() => {
+          setClothingItems((cards) => cards.filter((c) => c.id !== card.id));
+          handleCloseModal();
+        })
+        .catch((err) => console.log(err));
+      console.log(card);
+    };
 
   const handleDeleteConfirmationModal = (selectedCard) => {
     setActiveModal("confirmation-opened");
     setSelectedCard(selectedCard);
   };
 
+  // useEffect(() => {
+  //   fetchItems()
+  //     .then((data) => {
+  //       setClothingItems(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    fetchItems()
+    api
+      .fetchItems()
       .then((data) => {
         setClothingItems(data);
       })
-      .catch((error) => {
-        console.error(error);
-      });
+      .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
@@ -175,7 +208,7 @@ function App() {
           <DeleteModal
             onClose={handleCloseModal}
             card={selectedCard}
-            handleDeleteButton={handleDeleteButton}
+            handleDeleteCard={handleDeleteCard}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>

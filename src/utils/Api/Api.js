@@ -4,12 +4,13 @@ const baseUrl =
 export const processServerResponse = (res) => {
   if (res.ok) {
     return res.json();
+  } else {
+    return Promise.reject(`error: ${res.status}`);
   }
-  return Promise.reject(`Error: ${res.status}`);
 };
 
-export const removeItems = (selectedCard) => {
-  const deleteItems = fetch(`${baseUrl}/items/${selectedCard}`, {
+export const removeItems = (id) => {
+  const deleteItems = fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -39,3 +40,9 @@ export const loadItems = ({ name, link, weather }) => {
 
   return postItems;
 };
+
+export const api = { removeItems, fetchItems, loadItems };
+
+export default api;
+
+
