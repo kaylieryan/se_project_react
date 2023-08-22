@@ -1,7 +1,7 @@
 const baseUrl =
   "https://my-json-server.typicode.com/kaylieryan/se_project_react";
 
-const processServerResponse = (res) => {
+export const processServerResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
