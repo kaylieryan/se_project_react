@@ -71,11 +71,11 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
-  const handleDeleteCard = (selectedCard) => {
-    removeItems(selectedCard)
+  const handleDeleteCard = (cardElement) => {
+    removeItems(cardElement)
       .then(() => {
         const newClothingItems = clothingItems.filter((cards) => {
-          return cards.id !== selectedCard.id;
+          return cards.id !== cardElement;
         });
         setClothingItems(newClothingItems);
         handleCloseModal();

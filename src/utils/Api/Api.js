@@ -9,8 +9,8 @@ export const processServerResponse = (res) => {
   }
 };
 
-export function removeItems(selectedCard) {
-  const deleteItems = fetch(`${baseUrl}/items/${selectedCard.id}`, {
+export function removeItems(id) {
+  const deleteItems = fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
