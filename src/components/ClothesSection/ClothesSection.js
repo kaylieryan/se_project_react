@@ -3,7 +3,7 @@ import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 import { defaultClothingItems } from "../../utils/constants";
 
-const ClothesSection = ({ onSelectCard, cards, onCreateModal }) => {
+const ClothesSection = ({ onSelectCard, clothingItems, onCreateModal }) => {
   return (
     <div className="clothingsection">
       <div className="clothingsection__title">
@@ -16,7 +16,7 @@ const ClothesSection = ({ onSelectCard, cards, onCreateModal }) => {
         </button>
       </div>
       <div className="clothingsection__cards">
-        {cards.map((item) => (
+        {clothingItems.map((item) => (
           <ItemCard item={item} key={item._id} onSelectCard={onSelectCard} />
         ))}
       </div>
