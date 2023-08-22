@@ -1,13 +1,13 @@
 import React from "react";
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
-import { defaultClothingItems } from "../../utils/constants";
+//import { defaultClothingItems } from "../../utils/constants";
 
 const ClothesSection = ({ onSelectCard, clothingItems, onCreateModal }) => {
   return (
     <div className="clothingsection">
       <div className="clothingsection__title">
-        <h3>Your items</h3>
+        <p>Your items</p>
         <button
           className="clothingsection__button"
           onClick={onCreateModal}

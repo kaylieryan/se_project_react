@@ -1,17 +1,25 @@
-.clothingsection {
+.clothingsection__title {
   display: flex;
-  flex: 1 0 auto;
+  align-items: baseline;
+  gap: 20px;
+  font-family: "CabinetGrotesk-Bold", sans-serif;
   font-size: 20px;
+  line-height: 24px;
+}
+
+.clothingsection__button {
+  color: rgba(0, 0, 0, 0.6);
+  background-color: transparent;
+  border: none;
+}
+
+.clothingsection__button:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 .clothingsection__cards {
-  max-width: 1015px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.clothingsection__card {
-  width: 325px;
+  gap: 20px;
 }
