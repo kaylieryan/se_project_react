@@ -10,9 +10,11 @@ import { getForecastWeather, parseWeatherData } from "../../utils/WeatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { Switch, Route } from "react-router-dom";
 import DeleteModal from "../DeleteModal/DeleteModal";
-import { removeItems, fetchItems, postClothingItems } from "../../utils/Api/Api";
-
-
+import {
+  removeItems,
+  fetchItems,
+  postClothingItems,
+} from "../../utils/Api/Api";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -55,8 +57,6 @@ function App() {
   //     .catch((error) => console.log(error));
   // };
 
-    
-
   const handleItemCard = (selectedCard) => {
     setActiveModal("previewModal");
     setSelectedCard(selectedCard);
@@ -71,20 +71,19 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
-    const handleDeleteCard = (selectedCard) => {
-      removeItems(selectedCard)
-        .then(() => {
-          const newClothingItems = clothingItems.filter((cards) => {
-            return cards.id !== selectedCard;
-          });
-          setClothingItems(newClothingItems);
-          handleCloseModal();
-        })
-        .catch((error) => {
-          console.error(error);
+  const handleDeleteCard = (selectedCard) => {
+    removeItems(selectedCard)
+      .then(() => {
+        const newClothingItems = clothingItems.filter((cards) => {
+          return cards.id !== selectedCard;
         });
-    };
-
+        setClothingItems(newClothingItems);
+        handleCloseModal();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const handleDeleteConfirmationModal = (selectedCard) => {
     setActiveModal("confirmation-opened");
@@ -101,7 +100,6 @@ function App() {
       });
   }, []);
 
-  
   useEffect(() => {
     if (!activeModal) return;
 
