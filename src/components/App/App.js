@@ -71,11 +71,11 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
-  const handleDeleteCard = (cardElement) => {
-    removeItems(cardElement)
+  const handleDeleteCard = (selectedCard) => {
+    removeItems(selectedCard)
       .then(() => {
         const newClothingItems = clothingItems.filter((cards) => {
-          return cards.id !== cardElement;
+          return cards.id !== selectedCard;
         });
         setClothingItems(newClothingItems);
         handleCloseModal();
@@ -188,7 +188,7 @@ function App() {
         {activeModal === "confirmation-opened" && (
           <DeleteModal
             onClose={handleCloseModal}
-            card={selectedCard}
+            selectedCard={selectedCard}
             handleDeleteCard={handleDeleteCard}
           />
         )}

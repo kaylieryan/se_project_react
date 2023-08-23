@@ -9,8 +9,8 @@ export const processServerResponse = (res) => {
   }
 };
 
-export function removeItems(id) {
-  const deleteItems = fetch(`${baseUrl}/items/${id}`, {
+export function removeItems(selectedCard) {
+  const deleteItems = fetch(`${baseUrl}/items/${selectedCard}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export function fetchItems() {
   return getItems;
 }
 
-export const postClothingItems = ({ name, imageUrl, weatherType }) => {
+export function postClothingItems({ name, imageUrl, weatherType }) {
   const postItems = fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
