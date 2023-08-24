@@ -47,16 +47,6 @@ function App() {
       });
   };
 
-  // const onAddItem = (item) => {
-  //   api
-  //     .loadItems(item)
-  //     .then((newCard) => {
-  //       setClothingItems((cards) => [...cards, newCard]);
-  //       handleCloseModal();
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
-
   const handleItemCard = (selectedCard) => {
     setActiveModal("previewModal");
     setSelectedCard(selectedCard);
