@@ -35,7 +35,7 @@ export function postClothingItems({ name, imageUrl, weatherType }) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name, imageUrl, weatherType }),
+    body: JSON.stringify({ name, imageUrl, weather: weatherType }),
   }).then(processServerResponse);
 
   return postItems;
