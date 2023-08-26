@@ -62,7 +62,7 @@ function App() {
   };
 
   const handleDeleteCard = (selectedCard) => {
-    removeItems(selectedCard)
+    removeItems(selectedCard.id)
       .then(() => {
         const newClothingItems = clothingItems.filter((cards) => {
           return cards.id !== selectedCard;
