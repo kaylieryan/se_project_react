@@ -15,6 +15,7 @@ import {
   fetchItems,
   postClothingItems,
 } from "../../utils/Api/Api";
+import { UseForm } from "../UseForm/UseForm"
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -22,6 +23,7 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const { values, handleChange, setValues } = UseForm({});
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -62,6 +64,7 @@ function App() {
   };
 
   const handleDeleteCard = (selectedCard) => {
+    console.log(selectedCard);
     removeItems(selectedCard.id)
       .then(() => {
         const newClothingItems = clothingItems.filter((cards) => {
@@ -154,7 +157,7 @@ function App() {
           </Route>
           <Route path="/profile">
             <Profile
-              onSelectCard={handleItemCard}
+              onSelectCard={handleSelectedCard}
               onCreateModal={handleActiveCreateModal}
               clothingItems={clothingItems}></Profile>
           </Route>
@@ -165,6 +168,8 @@ function App() {
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "create"}
             handleAddItemSubmit={handleAddItemSubmit}
+            values={values}
+            handleChange={handleChange}
           />
         )}
 
@@ -176,11 +181,15 @@ function App() {
           />
         )}
         {activeModal === "confirmation-opened" && (
-          <DeleteModal
-            onClose={handleCloseModal}
-            selectedCard={selectedCard}
-            handleDeleteCard={handleDeleteCard}
-          />
+          <div>
+            <p>Selected Card: {JSON.stringify(selectedCard)}</p>
+
+            <DeleteModal
+              onClose={handleCloseModal}
+              selectedCard={selectedCard}
+              handleDeleteCard={handleDeleteCard}
+            />
+          </div>
         )}
       </CurrentTemperatureUnitContext.Provider>
     </div>
