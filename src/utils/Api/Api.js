@@ -9,16 +9,25 @@ export const processServerResponse = (res) => {
   }
 };
 
-
-export function removeItems(selectedCard) {
-  const deleteItems = fetch(`${baseUrl}/items/${selectedCard}`, {
+export function removeItems(id) {
+  return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
   }).then(processServerResponse);
-  return deleteItems;
 }
+
+
+// export function removeItems(selectedCard) {
+//   const deleteItems = fetch(`${baseUrl}/items/${selectedCard}`, {
+//     method: "DELETE",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   }).then(processServerResponse);
+//   return deleteItems;
+// }
 
 export function fetchItems() {
   const getItems = fetch(`${baseUrl}/items`, {
@@ -40,4 +49,4 @@ export function postClothingItems({ name, imageUrl, weather }) {
   }).then(processServerResponse);
 
   return postItems;
-};
+}

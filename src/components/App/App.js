@@ -65,7 +65,7 @@ function App() {
 
   const handleDeleteCard = (selectedCard) => {
     console.log(selectedCard);
-    removeItems(selectedCard.id)
+    removeItems(selectedCard)
       .then(() => {
         const newClothingItems = clothingItems.filter((cards) => {
           return cards.id !== selectedCard;
