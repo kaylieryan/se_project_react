@@ -10,3 +10,7 @@ export function UseForm(inputValues) {
   };
   return { values, handleChange, setValues };
 }
+
+export default UseForm;
+
+

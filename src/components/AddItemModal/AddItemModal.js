@@ -7,13 +7,19 @@ const AddItemModal = ({ handleCloseModal, handleAddItemSubmit, isOpen }) => {
   const [imageUrl, setUrl] = useState("");
   const [weather, setWeather] = useState("");
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
+  const { values, handleChange } = UseForm({
+    name: "",
+    imageUrl: "",
+    weather: "",
+  });
 
-  const handleUrlChange = (e) => {
-    setUrl(e.target.value);
-  };
+  // const handleNameChange = (e) => {
+  //   setName(e.target.value);
+  // };
+
+  // const handleUrlChange = (e) => {
+  //   setUrl(e.target.value);
+  // };
 
   const handleWeatherChange = (e) => {
     setWeather(e.target.value);
@@ -48,8 +54,8 @@ const AddItemModal = ({ handleCloseModal, handleAddItemSubmit, isOpen }) => {
             maxLength="30"
             placeholder="Name"
             className="modal__input"
-            value={name}
-            onChange={handleNameChange}
+            value={values.name}
+            onChange={handleChange}
           />
         </label>
       </div>
@@ -63,8 +69,8 @@ const AddItemModal = ({ handleCloseModal, handleAddItemSubmit, isOpen }) => {
             maxLength="999"
             placeholder="Image URL"
             className="modal__input"
-            value={imageUrl}
-            onChange={handleUrlChange}
+            value={values.imageUrl}
+            onChange={handleChange}
           />
         </label>
       </div>
