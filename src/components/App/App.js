@@ -15,7 +15,7 @@ import {
   fetchItems,
   postClothingItems,
 } from "../../utils/Api/Api";
-import UseForm from "../UseForm/UseForm";
+
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -24,11 +24,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { values, handleChange } = UseForm({
-    name: "",
-    imageUrl: "",
-    weather: "",
-  });
+ 
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -178,8 +174,6 @@ function App() {
           handleCloseModal={handleCloseModal}
           isOpen={activeModal === "create"}
           handleAddItemSubmit={handleAddItemSubmit}
-          values={values}
-          handleChange={handleChange}
           buttonText={isLoading ? "Saving..." : "Save"}
         />
       )}

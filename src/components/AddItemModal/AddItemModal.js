@@ -1,25 +1,18 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { UseForm } from "../UseForm/UseForm";
 
 const AddItemModal = ({ handleCloseModal, handleAddItemSubmit, isOpen }) => {
   const [name, setName] = useState("");
   const [imageUrl, setUrl] = useState("");
   const [weather, setWeather] = useState("");
 
-  const { values, handleChange } = UseForm({
-    name: "",
-    imageUrl: "",
-    weather: "",
-  });
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
 
-  // const handleNameChange = (e) => {
-  //   setName(e.target.value);
-  // };
-
-  // const handleUrlChange = (e) => {
-  //   setUrl(e.target.value);
-  // };
+  const handleUrlChange = (e) => {
+    setUrl(e.target.value);
+  };
 
   const handleWeatherChange = (e) => {
     setWeather(e.target.value);
@@ -54,8 +47,8 @@ const AddItemModal = ({ handleCloseModal, handleAddItemSubmit, isOpen }) => {
             maxLength="30"
             placeholder="Name"
             className="modal__input"
-            value={values.name}
-            onChange={handleChange}
+            value={name}
+            onChange={handleNameChange}
           />
         </label>
       </div>
@@ -69,8 +62,8 @@ const AddItemModal = ({ handleCloseModal, handleAddItemSubmit, isOpen }) => {
             maxLength="999"
             placeholder="Image URL"
             className="modal__input"
-            value={values.imageUrl}
-            onChange={handleChange}
+            value={imageUrl}
+            onChange={handleUrlChange}
           />
         </label>
       </div>
