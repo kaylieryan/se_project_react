@@ -5,12 +5,13 @@
 
 .weather__info {
   position: absolute;
-  top: 12px;
+  top: 13px;
   left: 16px;
   color: #fff;
   font-size: 36px;
   line-height: 40px;
   font-weight: 700;
+  font-family: "CabinetGrotesk-Bold", sans-serif;
 }
 
 .weather__image {
@@ -20,7 +21,7 @@
 @media all and (max-width: 1015px) {
   .weather__info {
     font-size: 20px;
-    top: 15px;
+    top: 20px;
   }
 
   .weather__image {
@@ -31,7 +32,7 @@
 @media all and (max-width: 660px) {
   .weather__info {
     font-size: 15px;
-    top: 13px;
+    top: 20px;
   }
 
   .weather__image {
