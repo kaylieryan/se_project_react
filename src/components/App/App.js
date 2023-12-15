@@ -16,7 +16,6 @@ import {
   postClothingItems,
 } from "../../utils/Api/Api";
 
-
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -24,7 +23,6 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
 
   const handleCreateModal = () => {
     setActiveModal("create");
