@@ -14,7 +14,12 @@ import {
   removeItems,
   fetchItems,
   postClothingItems,
-} from "../../utils/Api/Api";
+} from "../../utils/Api.js";
+import {
+  postSignIn,
+} from "../../utils/auth.js"
+import LoginModal from "../LoginModal/LoginModal.js";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -22,15 +27,36 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleCreateModal = () => {
     setActiveModal("create");
   };
 
+  const handleLoginModal = () => {
+    setActiveModal("login");
+  }; 
+
   const handleCloseModal = () => {
     setActiveModal("");
   };
+
+  const handleLogin = (email, password) => {
+    postSignIn({ email, password })
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          setLoggedIn(true);
+          handleCloseModal();
+          return res;
+        } else {
+          console.log("handleLogin error");
+        }
+      })
+      .catch(console.error);
+  };
+
 
   const handleSelectedCard = (card) => {
     setActiveModal("previewModal");
@@ -91,7 +117,7 @@ function App() {
   useEffect(() => {
     fetchItems()
       .then((data) => {
-        setClothingItems(data);
+        setClothingItems(data.data);
       })
       .catch((error) => {
         console.error(error);
@@ -150,7 +176,10 @@ function App() {
   return (
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
-      <Header onCreateModal={handleCreateModal} />
+      <Header 
+        onCreateModal={handleCreateModal}
+        onLoginModal={handleLoginModal}
+         />
       <Switch>
         <Route exact path="/">
           <Main
@@ -159,12 +188,12 @@ function App() {
             clothingItems={clothingItems}
           />
         </Route>
-        <Route path="/profile">
+        <ProtectedRoute path="/profile" loggedIn={loggedIn}>
           <Profile
             onSelectCard={handleItemCard}
             onCreateModal={handleActiveCreateModal}
             clothingItems={clothingItems}></Profile>
-        </Route>
+        </ProtectedRoute>
       </Switch>
       <Footer />
       {activeModal === "create" && (
@@ -182,6 +211,16 @@ function App() {
           onClose={handleCloseModal}
           handleDeleteCard={handleDeleteConfirmationModal}
           buttonText={isLoading ? "Deleting..." : "Delete"}
+        />
+      )}
+      {activeModal === "login" && (
+        <LoginModal
+          handleCloseModal={handleCloseModal}
+          onClose={handleCloseModal}
+          isOpen={activeModal === "login"}
+          onLogin={handleLogin}
+          setActiveModal={setActiveModal}
+          buttonText={isLoading ? "Logging in..." : "Log In"}
         />
       )}
       {activeModal === "confirmation-opened" && (
