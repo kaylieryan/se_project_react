@@ -17,9 +17,12 @@ import {
 } from "../../utils/Api.js";
 import {
   postSignIn,
+  postSignUp,
 } from "../../utils/auth.js"
 import LoginModal from "../LoginModal/LoginModal.js";
+import RegisterModal from "../RegisterModal/RegisterModal.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -29,6 +32,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -53,6 +57,16 @@ function App() {
         } else {
           console.log("handleLogin error");
         }
+      })
+      .catch(console.error);
+  };
+
+  const handleRegister = (email, password, name, avatar) => {
+    postSignUp({ email, password, name, avatar })
+      .then((res) => {
+        setCurrentUser(res.data);
+        handleCloseModal();
+        handleLogin(email, password);
       })
       .catch(console.error);
   };
@@ -176,6 +190,7 @@ function App() {
   return (
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
+        <CurrentUserContext.Provider value={currentUser}>
       <Header 
         onCreateModal={handleCreateModal}
         onLoginModal={handleLoginModal}
@@ -223,6 +238,16 @@ function App() {
           buttonText={isLoading ? "Logging in..." : "Log In"}
         />
       )}
+      {activeModal === "register" && (
+        <RegisterModal
+          handleCloseModal={handleCloseModal}
+          onClose={handleCloseModal}
+          isOpen={activeModal === "register"}
+          onRegister={handleRegister}
+          setActiveModal={setActiveModal}
+          buttonText={isLoading ? "Registering..." : "Register"}
+        />
+      )}
       {activeModal === "confirmation-opened" && (
         <DeleteModal
           onClose={handleCloseModal}
@@ -231,6 +256,7 @@ function App() {
           buttonText={isLoading ? "Deleting..." : "Delete"}
         />
       )}
+    </CurrentUserContext.Provider>
     </CurrentTemperatureUnitContext.Provider>
   );
 }
