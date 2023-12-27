@@ -1,6 +1,7 @@
 import { baseUrl } from "./Api";
 import { processServerResponse } from "./Api";
 
+//sign up
 export const postSignUp = ({ email, password, name, avatar }) => {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
@@ -12,6 +13,7 @@ export const postSignUp = ({ email, password, name, avatar }) => {
   }).then(processServerResponse);
 };
 
+//sign in
 export const postSignIn = ({ email, password }) => {
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
