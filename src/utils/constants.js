@@ -66,6 +66,16 @@ export const latitude = 40.7128;
 export const longitude = 74.006;
 export const APIkey = "1c8987e8045de68b6d5f029698cad7f6";
 
+export const baseUrl = "http://localhost:3001";
+
+export const processServerResponse = (res) => {
+  if (res.ok) {
+    return res.json();
+  } else {
+    return Promise.reject(`error: ${res.status}`);
+  }
+};
+
 export const headers = {
   authorization: "",
   "Content-Type": "application/json",
