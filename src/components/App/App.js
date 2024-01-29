@@ -3,6 +3,8 @@ import Header from "../Header/Header.js";
 import Main from "../Main/Main.js";
 import Footer from "../Footer/Footer.js";
 import ItemModal from "../ItemModal/ItemModal";
+import LoginModal from "../LoginModal/LoginModal.js";
+import RegisterModal from "../RegisterModal/RegisterModal.js";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import { useEffect, useState } from "react";
@@ -12,8 +14,6 @@ import { Switch, Route } from "react-router-dom";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import { removeItems, fetchItems, postClothingItems } from "../../utils/Api.js";
 import { postSignIn, postSignUp } from "../../utils/auth.js";
-import LoginModal from "../LoginModal/LoginModal.js";
-import RegisterModal from "../RegisterModal/RegisterModal.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 //import EditProfileModal from "../EditProfileModal/EditProfileModal";
@@ -35,6 +35,10 @@ function App() {
 
   const handleLoginModal = () => {
     setActiveModal("login");
+  };
+
+  const handleRegisterModal = () => {
+    setActiveModal("register");
   };
 
   const handleCloseModal = () => {
@@ -190,7 +194,7 @@ function App() {
         <Header
           onCreateModal={handleCreateModal}
           onLoginModal={handleLoginModal}
-          //onRegisterModal={handleRegisterModal}
+          onRegisterModal={handleRegisterModal}
           loggedIn={loggedIn}
           city={location}
         />
