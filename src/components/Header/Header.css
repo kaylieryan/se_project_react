@@ -1,59 +1,98 @@
 .header {
   display: flex;
+  min-height: 60px;
+  padding: 32px 40px 28px 40px;
   justify-content: space-between;
   align-items: center;
-  min-height: 60px;
-  padding: 0 20px;
-  font-family: "CabinetGrotesk-Bold", serif;
-  font-size: 20px;
-  line-height: 25px;
-  font-weight: 700;
 }
 
 .header__logo {
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
   align-items: center;
+  gap: 24px;
 }
 
-.header__logo-image {
-  cursor: pointer;
-}
-
-.header__logo-image:hover {
-  opacity: 0.8;
-}
-
-.header__avatar-logo {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-.header__add-clothes-button {
+.header__date {
+  color: #000;
   font-family: "CabinetGrotesk-Bold", serif;
   font-size: 20px;
-  background: none;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 120% */
+  margin: 0;
+}
+
+.header__profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.header__add-btn {
+  color: #000;
+  font-family: "CabinetGrotesk-Bold", serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 120% */
+  background-color: #fff;
   border: none;
   cursor: pointer;
 }
 
-.header__add-clothes-button:hover {
-  color: rgba(0, 0, 0, 0.6);
+.header__name {
+  color: #000;
+  font-family: "CabinetGrotesk-Bold", serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 120% */
 }
 
-.header__profile-link {
+.header__register-btn {
+  border: none;
+  background-color: #fff;
+  color: #000;
+  font-family: "CabinetGrotesk-Bold", serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
   cursor: pointer;
+  transition: opacity 0.5s ease-in-out;
+}
+.header__login-btn {
+  border: none;
+  background-color: #fff;
   color: #000;
-  text-decoration: none;
+  font-family: "CabinetGrotesk-Bold", serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: opacity 0.5s ease-in-out;
 }
 
-.header__profile-link:hover {
-  color: rgba(0, 0, 0, 0.6);
+.header__avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
-.header__profile-link:visited {
-  color: #000;
+.header__avatar-default {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+a {
   text-decoration: none;
 }
 
