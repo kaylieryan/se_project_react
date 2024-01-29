@@ -1,5 +1,5 @@
-import { baseUrl } from "./Api";
-import { processServerResponse } from "./Api";
+import { baseUrl } from "./constants";
+import { processServerResponse } from "./constants";
 
 //sign up
 export const postSignUp = ({ email, password, name, avatar }) => {
@@ -24,3 +24,15 @@ export const postSignIn = ({ email, password }) => {
     body: JSON.stringify({ email, password }),
   }).then(processServerResponse);
 };
+
+//get user info
+export const getUserInfo = (token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(processServerResponse);
+};
+
