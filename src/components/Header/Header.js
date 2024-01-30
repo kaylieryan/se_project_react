@@ -1,4 +1,5 @@
 import "./Header.css";
+import avatarLogo from "../../images/avatar.svg";
 import wtwrLogo from "../../images/logo.svg";
 
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
@@ -7,7 +8,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
 const Header = ({
-  handleCreateModal,
+  onCreateModal,
   weatherLocation,
   onLoginModal,
   onRegisterModal,
@@ -20,7 +21,7 @@ const Header = ({
   const currentUser = useContext(CurrentUserContext);
   const avatar = currentUser ? currentUser.avatar : undefined;
   const showAvatar = avatar !== "" ? true : false;
-  const name = currentUser.name;
+  const name = currentUser ? currentUser.name : "";
 
   return (
     <header className="header">
@@ -42,7 +43,7 @@ const Header = ({
               <button
                 className="header__add-btn"
                 type="text"
-                onClick={handleCreateModal}>
+                onClick={onCreateModal}>
                 + Add Clothes
               </button>
             </div>
@@ -53,7 +54,7 @@ const Header = ({
               <div>
                 <img
                   className="header__avatar"
-                  src={avatar}
+                  src={avatarLogo}
                   alt="Avatar icon"
                 />
               </div>

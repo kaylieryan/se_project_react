@@ -8,14 +8,19 @@ import RegisterModal from "../RegisterModal/RegisterModal.js";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import { useEffect, useState } from "react";
-import { getForecastWeather, parseWeatherData, parseLocation } from "../../utils/WeatherApi";
+import {
+  getForecastWeather,
+  parseWeatherData,
+  parseLocation,
+} from "../../utils/WeatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import { removeItems, fetchItems, postClothingItems } from "../../utils/Api.js";
-import { postSignIn, postSignUp } from "../../utils/auth.js";
+import { postSignIn, postSignUp, getUserInfo } from "../../utils/auth.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+// import { Redirect } from "react-router-dom/cjs/react-router-dom.min.js";
 //import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 function App() {
@@ -127,6 +132,20 @@ function App() {
   };
 
   useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      getUserInfo(jwt)
+        .then((res) => {
+          if (res) {
+            setCurrentUser(res.user);
+            setLoggedIn(true);
+          }
+        })
+        .catch(console.error);
+    }
+  }, [loggedIn]);
+
+  useEffect(() => {
     fetchItems()
       .then((data) => {
         setClothingItems(data.data);
@@ -204,14 +223,19 @@ function App() {
               weatherTemp={temp}
               onSelectCard={handleSelectedCard}
               clothingItems={clothingItems}
+              loggedIn={loggedIn}
             />
           </Route>
           <ProtectedRoute path="/profile" loggedIn={loggedIn}>
             <Profile
               onSelectCard={handleItemCard}
               onCreateModal={handleActiveCreateModal}
-              clothingItems={clothingItems}></Profile>
+              clothingItems={clothingItems}
+              loggedIn={loggedIn}></Profile>
           </ProtectedRoute>
+          <Route path="*">
+            {loggedIn ? <Redirect to="/" /> : <Redirect to="/" />}
+          </Route>
         </Switch>
         <Footer />
         {activeModal === "create" && (
