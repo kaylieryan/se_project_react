@@ -20,7 +20,6 @@ import { removeItems, fetchItems, postClothingItems } from "../../utils/Api.js";
 import { postSignIn, postSignUp, getUserInfo } from "../../utils/auth.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-// import { Redirect } from "react-router-dom/cjs/react-router-dom.min.js";
 //import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 function App() {
