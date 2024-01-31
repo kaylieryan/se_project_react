@@ -29,6 +29,23 @@
   padding: 5px;
 }
 
+.clothing_card__like-button {
+  width: 22px;
+  height: 19px;
+  transition: opacity 0.5s ease-in-out;
+  cursor: pointer;
+  background: no-repeat;
+  border: none;
+}
+
+.clothing_card__like-button_active{
+  background-image: url(../../images/like_button_active.png);
+}
+
+.clothing_card__like-button_inactive{
+  background-image: url(../../images/like_button_inactive.png);
+}
+
 @media all and (max-width: 660px) {
   .clothing_card__card_image {
     width: 164px;
