@@ -1,19 +1,20 @@
 import React from "react";
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
-// import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-// import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useContext } from "react";
 
 const ClothesSection = ({
   onSelectCard,
   clothingItems,
   onCreateModal,
   isLoggedIn,
+  onCardLike,
 }) => {
-  // const currentUser = useContext(CurrentUserContext);
-  // const currentItems = clothingItems.filter((item) => {
-  //   return item.owner === currentUser.id;
-  // });
+  const currentUser = useContext(CurrentUserContext);
+  const currentItems = clothingItems.filter((item) => {
+    return item.owner === currentUser.id;
+  });
 
   return (
     <div className="clothingsection">
@@ -27,14 +28,18 @@ const ClothesSection = ({
         </button>
       </div>
       <div className="clothingsection__cards">
-        {clothingItems.map((item) => (
+        {currentItems.map((item) => {
+
+          return (
           <ItemCard
             item={item}
             key={item?._id ?? item?.id}
             onSelectCard={onSelectCard}
             isLoggedIn={isLoggedIn}
+            onCardLike={onCardLike}
           />
-        ))}
+          );
+        })}
       </div>
     </div>
   );
