@@ -16,11 +16,23 @@ import {
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { Switch, Route, Redirect } from "react-router-dom";
 import DeleteModal from "../DeleteModal/DeleteModal";
-import { removeItems, fetchItems, postClothingItems } from "../../utils/Api.js";
-import { postSignIn, postSignUp, getUserInfo } from "../../utils/auth.js";
+import {
+  removeItems,
+  fetchItems,
+  postClothingItems,
+  removeCardLike,
+  addCardLike,
+} from "../../utils/Api.js";
+import {
+  postSignIn,
+  postSignUp,
+  getUserInfo,
+  editProfile,
+} from "../../utils/auth.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-//import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
+// import { set } from "mongoose";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -39,6 +51,10 @@ function App() {
 
   const handleLoginModal = () => {
     setActiveModal("login");
+  };
+
+  const handleEditProfileModal = () => {
+    setActiveModal("editProfile");
   };
 
   const handleRegisterModal = () => {
@@ -64,7 +80,7 @@ function App() {
       .catch(console.error);
   };
 
-  const handleRegister = (email, password, name, avatar) => {
+  const handleRegisterSubmit = (email, password, name, avatar) => {
     postSignUp({ email, password, name, avatar })
       .then((res) => {
         setCurrentUser(res.data);
@@ -72,6 +88,39 @@ function App() {
         handleLogin(email, password);
       })
       .catch(console.error);
+  };
+
+  const handleEditProfileSubmit = (name, avatar) => {
+    const token = localStorage.getItem("jwt");
+    editProfile({ name, avatar, token })
+      .then((res) => {
+        setCurrentUser(res.data);
+        handleCloseModal();
+      })
+      .catch(console.error);
+  };
+
+  const handleCardLike = (item, isLiked, currentUser) => {
+    const token = localStorage.getItem("jwt");
+    !isLiked
+      ? addCardLike(item, currentUser._id, token)
+          .then((updatedCard) => {
+            setClothingItems((clothingItems) =>
+              clothingItems.map((card) =>
+                card._id === item._id ? updatedCard : card
+              )
+            );
+          })
+          .catch((err) => console.log(err))
+      : removeCardLike(item, currentUser._id, token)
+          .then((updatedCard) => {
+            setClothingItems((clothingItems) =>
+              clothingItems.map((card) =>
+                card._id === item._id ? updatedCard : card
+              )
+            );
+          })
+          .catch((err) => console.log(err));
   };
 
   const handleSelectedCard = (card) => {
@@ -208,6 +257,7 @@ function App() {
   return (
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
+
       <CurrentUserContext.Provider value={currentUser}>
         <Header
           onCreateModal={handleCreateModal}
@@ -223,14 +273,19 @@ function App() {
               onSelectCard={handleSelectedCard}
               clothingItems={clothingItems}
               loggedIn={loggedIn}
+              onCardLike={handleCardLike}
             />
           </Route>
           <ProtectedRoute path="/profile" loggedIn={loggedIn}>
             <Profile
               onSelectCard={handleItemCard}
               onCreateModal={handleActiveCreateModal}
+              onEditProfileModal={handleEditProfileModal}
               clothingItems={clothingItems}
-              loggedIn={loggedIn}></Profile>
+              loggedIn={loggedIn}
+              onCardLike={handleCardLike}
+              //onLogout={handleLogout}
+              ></Profile>
           </ProtectedRoute>
           <Route path="*">
             {loggedIn ? <Redirect to="/" /> : <Redirect to="/" />}
@@ -252,6 +307,8 @@ function App() {
             onClose={handleCloseModal}
             handleDeleteCard={handleDeleteConfirmationModal}
             buttonText={isLoading ? "Deleting..." : "Delete"}
+            loggedIn={loggedIn}
+            currentUser={currentUser}
           />
         )}
         {activeModal === "login" && (
@@ -262,6 +319,7 @@ function App() {
             onLogin={handleLogin}
             setActiveModal={setActiveModal}
             buttonText={isLoading ? "Logging in..." : "Log In"}
+            onRegister={handleRegisterModal}
           />
         )}
         {activeModal === "register" && (
@@ -269,7 +327,7 @@ function App() {
             handleCloseModal={handleCloseModal}
             onClose={handleCloseModal}
             isOpen={activeModal === "register"}
-            onRegister={handleRegister}
+            onRegister={handleRegisterSubmit}
             setActiveModal={setActiveModal}
             buttonText={isLoading ? "Registering..." : "Register"}
           />
@@ -280,6 +338,15 @@ function App() {
             selectedCard={selectedCard}
             handleDeleteCard={handleDeleteCard}
             buttonText={isLoading ? "Deleting..." : "Delete"}
+          />
+        )}
+        {activeModal === "editProfile" && (
+          <EditProfileModal
+            handleCloseModal={handleCloseModal}
+            onClose={handleCloseModal}
+            isOpen={activeModal === "editProfile"}
+            onEditProfileSubmit={handleEditProfileSubmit}
+            buttonText={isLoading ? "Saving..." : "Save"}
           />
         )}
       </CurrentUserContext.Provider>
