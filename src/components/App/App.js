@@ -32,8 +32,10 @@ import {
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min.js";
 // import { set } from "mongoose";
-
+// import { use } from "../../../../se_project_express/routes/clothingItem.js";
+// import { set } from "mongoose";
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -44,6 +46,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [isLoggedInLoading, setIsLoggedInLoading] = useState(true);
+  console.log(useLocation());
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -161,7 +165,7 @@ function App() {
     removeItems(selectedCard)
       .then(() => {
         const newClothingItems = clothingItems.filter((cards) => {
-          return cards.id !== selectedCard;
+          return cards._id !== selectedCard;
         });
         setClothingItems(newClothingItems);
         handleCloseModal();
@@ -185,13 +189,19 @@ function App() {
       getUserInfo(jwt)
         .then((res) => {
           if (res) {
-            setCurrentUser(res.user);
+            setCurrentUser(res.data);
             setLoggedIn(true);
           }
         })
-        .catch(console.error);
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          setIsLoggedInLoading(false);
+        });
     }
   }, [loggedIn]);
+  // Check authentication status once when the component mounts
 
   useEffect(() => {
     fetchItems()
@@ -257,7 +267,6 @@ function App() {
   return (
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
-
       <CurrentUserContext.Provider value={currentUser}>
         <Header
           onCreateModal={handleCreateModal}
@@ -276,7 +285,10 @@ function App() {
               onCardLike={handleCardLike}
             />
           </Route>
-          <ProtectedRoute path="/profile" loggedIn={loggedIn}>
+          <ProtectedRoute
+            path="/profile"
+            loggedIn={loggedIn}
+            isLoggedInLoading={isLoggedInLoading}>
             <Profile
               onSelectCard={handleItemCard}
               onCreateModal={handleActiveCreateModal}
@@ -285,7 +297,7 @@ function App() {
               loggedIn={loggedIn}
               onCardLike={handleCardLike}
               //onLogout={handleLogout}
-              ></Profile>
+            ></Profile>
           </ProtectedRoute>
           <Route path="*">
             {loggedIn ? <Redirect to="/" /> : <Redirect to="/" />}

@@ -13,7 +13,7 @@ const ClothesSection = ({
 }) => {
   const currentUser = useContext(CurrentUserContext);
   const currentItems = clothingItems.filter((item) => {
-    return item.owner === currentUser.id;
+    return item.owner === currentUser._id;
   });
 
   return (
@@ -33,7 +33,7 @@ const ClothesSection = ({
           return (
           <ItemCard
             item={item}
-            key={item?._id ?? item?.id}
+            key={item?._id ?? item?._id}
             onSelectCard={onSelectCard}
             isLoggedIn={isLoggedIn}
             onCardLike={onCardLike}

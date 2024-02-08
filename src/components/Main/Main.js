@@ -53,7 +53,7 @@ function Main({ weatherTemp, onSelectCard, clothingItems, isLoggedIn }) {
             <ItemCard
               item={item}
               onSelectCard={onSelectCard}
-              key={item.id}
+              key={item._id}
               isLoggedIn={isLoggedIn}
             />
           ))}
