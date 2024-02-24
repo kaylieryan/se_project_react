@@ -32,10 +32,7 @@ import {
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min.js";
-// import { set } from "mongoose";
-// import { use } from "../../../../se_project_express/routes/clothingItem.js";
-// import { set } from "mongoose";
+
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -47,7 +44,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedInLoading, setIsLoggedInLoading] = useState(true);
-  console.log(useLocation());
 
   const handleCreateModal = () => {
     setActiveModal("create");
