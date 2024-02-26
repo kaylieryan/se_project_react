@@ -1,13 +1,13 @@
 import React from "react";
 import SideBar from "../SideBar/SideBar";
-import "./Profile.css";
 import ClothesSection from "../ClothesSection/ClothesSection";
+import "./Profile.css";
 
 function Profile({
   clothingItems,
   onCreateModal,
   onSelectCard,
-  loggedIn,
+  isLoggedIn,
   onCardLike,
   onEditProfileModal,
   onLogout,
@@ -19,7 +19,7 @@ function Profile({
         clothingItems={clothingItems}
         onCreateModal={onCreateModal}
         onSelectCard={onSelectCard}
-        loggedIn={loggedIn}
+        isLoggedIn={isLoggedIn}
         onCardLike={onCardLike}
       />
     </div>

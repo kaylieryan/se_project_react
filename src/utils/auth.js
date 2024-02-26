@@ -27,6 +27,7 @@ export const postSignIn = ({ email, password }) => {
 
 //get user info
 export const getUserInfo = (token) => {
+  console.log(token);
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
@@ -39,6 +40,7 @@ export const getUserInfo = (token) => {
 //edit profile
 
 export const editProfile = ({ name, avatar, token }) => {
+  console.log("editProfile");
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {

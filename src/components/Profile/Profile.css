@@ -1,4 +1,53 @@
 .profile {
   display: flex;
-  padding: 40px;
+  justify-content: space-between;
+  padding: 0px 40px 0px 40px;
+}
+
+.profile__sidebar-avatar-name {
+  max-height: 56px;
+  display: flex;
+  gap: 16px;
+  margin-right: 116px;
+  align-items: center;
+}
+
+.profile__avatar {
+  width: 56px;
+  height: 56px;
+}
+
+.profile__name {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-wrap: nowrap;
+}
+
+.profile__sidebar-button-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  gap: 8px;
+}
+
+.profile__sidebar-button {
+  color: #000;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.profile__sidebar-button:hover {
+  opacity: 0.4;
 }

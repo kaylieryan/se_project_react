@@ -5,31 +5,29 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const SideBar = ({ onEditProfileModal, onLogOut }) => {
   const currentUser = useContext(CurrentUserContext);
-  console.log("SideBar.js: currentUserContext");
-  console.log(CurrentUserContext);
 
   const handleLogoutClick = () => {
     onLogOut();
   };
 
   return (
-    <div className="sidebar">
-      <div className="sidebar__avatar-name">
+    <div className="profile__sidebar">
+      <div className="profile__sidebar-avatar-name">
         <img
-          className="sidebar__avatar-image"
+          className="profile__avatar"
           src={currentUser.avatar}
           alt={currentUser.name}></img>
         <div className="profile__name">{currentUser.name}</div>
       </div>
-      <div className="sidebar__button-container">
+      <div className="profile__sidebar-button-container">
         <button
-          className="sidebar__button"
+          className="profile__sidebar-button"
           type="button"
           onClick={onEditProfileModal}>
           Change Profile Data
         </button>
         <button
-          className="sidebar__button"
+          className="profile__sidebar-button"
           type="button"
           onClick={handleLogoutClick}>
           Log Out

@@ -9,18 +9,20 @@ const EditProfileModal = ({
   isOpen,
 }) => {
   const currentUser = useContext(CurrentUserContext);
-  const [name, setName] = useState(currentUser.name);
+
+  const [name, setName] = useState(currentUser.name || "");
 
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
 
-  const [avatar, setAvatar] = useState(currentUser.avatar);
+  const [avatar, setAvatar] = useState(currentUser.avatar || "");
   const handleAvatarChange = (e) => {
     setAvatar(e.target.value);
   };
 
   const handleSubmit = (e) => {
+    console.log("handleSubmit");
     e.preventDefault();
     onSubmit({
       name,

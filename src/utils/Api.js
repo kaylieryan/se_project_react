@@ -1,9 +1,10 @@
 import { baseUrl } from "./constants";
 import { processServerResponse } from "./constants";
 
-export function request(url, options) {
-  return fetch(url, options).then(processServerResponse);
-}
+
+// export function request(url, options) {
+//   return fetch(url, options).then(processServerResponse);
+// }
 
 //GET items
 export const fetchItems = () => {
@@ -17,6 +18,17 @@ export const fetchItems = () => {
 
   return getItems;
 };
+
+// export function fetchItems() {
+//   const getItems = fetch(`${baseUrl}/items`, {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//       authorization: `Bearer ${localStorage.getItem("jwt")}`,
+//     },
+//   }).then(processServerResponse);
+//   return getItems;
+// }
 
 //POST items
 
@@ -44,16 +56,6 @@ export const addCardLike = (item) => {
   }).then(processServerResponse);
 };
 
-// export function fetchItems() {
-//   const getItems = fetch(`${baseUrl}/items`, {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//       authorization: `Bearer ${localStorage.getItem("jwt")}`,
-//     },
-//   }).then(processServerResponse);
-//   return getItems;
-// }
 
 //DELETE items
 

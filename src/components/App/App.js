@@ -1,13 +1,14 @@
+import React from "react";
 import "./App.css";
 import Header from "../Header/Header.js";
 import Main from "../Main/Main.js";
 import Footer from "../Footer/Footer.js";
+import { useEffect, useState } from "react";
 import ItemModal from "../ItemModal/ItemModal";
 import LoginModal from "../LoginModal/LoginModal.js";
 import RegisterModal from "../RegisterModal/RegisterModal.js";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
-import { useEffect, useState } from "react";
 import {
   getForecastWeather,
   parseWeatherData,
@@ -33,6 +34,8 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
+//------------------------------Functions-------------------------------------
+
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -44,6 +47,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedInLoading, setIsLoggedInLoading] = useState(true);
+
+  //------------------------------Constants-------------------------------------
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -78,6 +83,13 @@ function App() {
         }
       })
       .catch(console.error);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    setCurrentUser({});
+    setLoggedIn(false);
+    setClothingItems(clothingItems);
   };
 
   const handleRegisterSubmit = (email, password, name, avatar) => {
@@ -179,6 +191,8 @@ function App() {
     setSelectedCard(selectedCard);
   };
 
+  //------------------------------UseEffect-------------------------------------
+
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
@@ -260,6 +274,8 @@ function App() {
   }, []);
   console.log(currentTemperatureUnit);
 
+  //------------------------------HTML-------------------------------------
+
   return (
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
@@ -292,7 +308,7 @@ function App() {
               clothingItems={clothingItems}
               loggedIn={loggedIn}
               onCardLike={handleCardLike}
-              //onLogout={handleLogout}
+              onLogout={handleLogout}
             ></Profile>
           </ProtectedRoute>
           <Route path="*">
@@ -353,7 +369,9 @@ function App() {
             handleCloseModal={handleCloseModal}
             onClose={handleCloseModal}
             isOpen={activeModal === "editProfile"}
-            onEditProfileSubmit={handleEditProfileSubmit}
+            //onEditProfile={handleEditProfileModal} (onEditProfileSubmit)
+            onSubmit={handleEditProfileSubmit}
+            currentUser={currentUser}
             buttonText={isLoading ? "Saving..." : "Save"}
           />
         )}

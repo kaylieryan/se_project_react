@@ -17,9 +17,9 @@ const ClothesSection = ({
   });
 
   return (
-    <div className="clothingsection">
-      <div className="clothingsection__title">
-        <p>Your items</p>
+    <div className="clothing__section">
+      <div className="clothing__section-wrapper">
+        <p className="clothing__section-title">Your items</p>
         <button
           className="clothingsection__button"
           onClick={onCreateModal}
