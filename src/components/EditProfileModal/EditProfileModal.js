@@ -11,6 +11,7 @@ const EditProfileModal = ({
   const currentUser = useContext(CurrentUserContext);
 
   const [name, setName] = useState(currentUser.name || "");
+  console.log("name", name);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -20,6 +21,7 @@ const EditProfileModal = ({
   const handleAvatarChange = (e) => {
     setAvatar(e.target.value);
   };
+  console.log("avatar", avatar);
 
   const handleSubmit = (e) => {
     console.log("handleSubmit");

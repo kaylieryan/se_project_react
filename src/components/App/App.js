@@ -104,6 +104,7 @@ function App() {
 
   const handleEditProfileSubmit = (name, avatar) => {
     const token = localStorage.getItem("jwt");
+    console.log("handleEditProfileSubmit", name, avatar, token);
     editProfile({ name, avatar, token })
       .then((res) => {
         setCurrentUser(res.data);
@@ -308,8 +309,7 @@ function App() {
               clothingItems={clothingItems}
               loggedIn={loggedIn}
               onCardLike={handleCardLike}
-              onLogout={handleLogout}
-            ></Profile>
+              onLogout={handleLogout}></Profile>
           </ProtectedRoute>
           <Route path="*">
             {loggedIn ? <Redirect to="/" /> : <Redirect to="/" />}
