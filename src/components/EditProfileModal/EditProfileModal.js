@@ -26,10 +26,7 @@ const EditProfileModal = ({
   const handleSubmit = (e) => {
     console.log("handleSubmit");
     e.preventDefault();
-    onSubmit({
-      name,
-      avatar,
-    });
+    onSubmit(name, avatar);
   };
 
   const isEnabled = name.length > 0 && avatar.length > 0;
