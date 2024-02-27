@@ -3,21 +3,12 @@
   border: 5px black;
   display: flex;
   justify-content: center;
-
 }
 
-.clothing_card__card_image {
-  width: 325px;
-  height: 328px;
-  border-radius: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-}
-
-.clothing_card__card_name {
+.card_name {
+  text-align: center;
   position: absolute;
   top: 20px;
-  text-align: center;
   font-family: "CabinetGrotesk-Bold";
   font-size: 16px;
   line-height: 20px;
@@ -29,7 +20,7 @@
   padding: 5px;
 }
 
-.clothing_card__like-button {
+.card__likeButton {
   width: 22px;
   height: 19px;
   transition: opacity 0.5s ease-in-out;
@@ -37,25 +28,72 @@
   background: no-repeat;
   border: none;
 }
+.card_image {
+  width: 328px;
+  height: 328px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
 
-.clothing_card__like-button_active{
+
+/* .clothing_card {
+  position: relative;
+  border: 5px black;
+  display: flex;
+  justify-content: center;
+}
+
+.card_name {
+  text-align: center;
+  position: absolute;
+  top: 20px;
+  font-family: "CabinetGrotesk-Bold";
+  font-size: 16px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #fff;
+  height: 24px;
+  width: 72px;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.card__likeButton {
+  width: 22px;
+  height: 19px;
+  transition: opacity 0.5s ease-in-out;
+  cursor: pointer;
+  background: no-repeat;
+  border: none;
+}
+.card_image {
+  width: 328px;
+  height: 328px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+} */
+
+
+.card__likeButton-active {
   background-image: url(../../images/like_button_active.png);
 }
 
-.clothing_card__like-button_inactive{
+.card__likeButton-inactive {
   background-image: url(../../images/like_button_inactive.png);
 }
 
-@media all and (max-width: 660px) {
-  .clothing_card__card_image {
+/* @media all and (max-width: 660px) {
+  .card_image {
     width: 164px;
     height: 164px;
     padding: 0px;
   }
 
-  .clothing_card__card_name {
+  .card_name {
     top: 7px;
     height: 15px;
     width: 50px;
   }
-}
+} */

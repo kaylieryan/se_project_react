@@ -2,29 +2,30 @@ import "./ItemCard.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
-const ItemCard = ({ item, onSelectCard, likeClothingItem }) => {
+const ItemCard = ({ item, onSelectCard, onCardLike }) => {
   const currentUser = useContext(CurrentUserContext);
 
   const isLiked = item.likes.some((id) => id === currentUser._id);
-  const itemLikeButtonClassName = `clothing_card__like-button ${
-    isLiked
-      ? "clothing_card__like-button_active"
-      : "clothing_card__like-button_inactive"
+  const itemLikeButtonClassName = `card__likeButton ${
+    isLiked ? "card__likeButton-active" : "card__likeButton-inactive"
   }`;
   const handleCardLikeClick = (item) => {
-     likeClothingItem(item, likeClothingItem, currentUser);
+    onCardLike(item, isLiked, currentUser);
   };
 
   return (
     <div className="clothing_card">
-      <h3 className="clothing_card__card_name"> {item.name}</h3>
-      <button
-        type="button"
-        className={itemLikeButtonClassName}
-        onClick={() => handleCardLikeClick(item)}></button>
+      <div className="card_name">
+        {" "}
+        {item.name}
+        <button
+          type="button"
+          className={itemLikeButtonClassName}
+          onClick={() => handleCardLikeClick(item)}></button>
+      </div>
       <img
-        src={item.imageUrl}
-        className="clothing_card__card_image"
+        src={item?.imageUrl || item?.link}
+        className="card_image"
         alt={item.name}
         onClick={() => onSelectCard(item)}
       />
