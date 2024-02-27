@@ -18,7 +18,7 @@
 }
 
 .profile__name {
-  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -36,7 +36,7 @@
 
 .profile__sidebar-button {
   color: #000;
-  font-family: Cabinet Grotesk;
+  font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
