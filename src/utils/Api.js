@@ -33,7 +33,7 @@ export const fetchItems = () => {
 //POST items
 
 export const postClothingItems = ({ name, imageUrl, weather }) => {
-  const postItems = fetch(`${baseUrl}/items`, {
+  const postClothingItems = fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export const postClothingItems = ({ name, imageUrl, weather }) => {
     body: JSON.stringify({ name, imageUrl, weather }),
   }).then(processServerResponse);
 
-  return postItems;
+  return postClothingItems;
 };
 
 //UPDATE items
