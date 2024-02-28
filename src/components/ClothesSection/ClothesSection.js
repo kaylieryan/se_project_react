@@ -21,13 +21,13 @@ const ClothesSection = ({
       <div className="clothing__section-wrapper">
         <p className="clothing__section-title">Your items</p>
         <button
-          className="clothingsection__button"
+          className="clothing__section-button"
           onClick={onCreateModal}
-          type="text">
+          type="submit">
           + Add new
         </button>
       </div>
-      <div className="clothingsection__cards">
+      <div className="clothing__section-cards">
         {currentItems.map((item) => {
 
           return (
