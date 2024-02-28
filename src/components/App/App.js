@@ -170,7 +170,6 @@ function App() {
   };
 
   const handleDeleteCard = (selectedCard) => {
-    setIsLoading(true);
     removeItems(selectedCard)
       .then(() => {
         const newClothingItems = clothingItems.filter((cards) => {
@@ -186,7 +185,6 @@ function App() {
         setIsLoading(false);
       });
   };
-
   const handleDeleteConfirmationModal = (selectedCard) => {
     setActiveModal("confirmation-opened");
     setSelectedCard(selectedCard);

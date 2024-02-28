@@ -60,7 +60,7 @@ export const addCardLike = (item) => {
 //DELETE items
 
 export function removeItems(selectedCard) {
-  const deleteItems = fetch(`${baseUrl}/items/${selectedCard}`, {
+  const deleteItems = fetch(`${baseUrl}/items/${selectedCard._id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
