@@ -1,4 +1,4 @@
-.item_modal {
+.item__modal {
   position: fixed;
   top: 0;
   right: 0;
@@ -36,7 +36,7 @@
   left: calc(100% - 35px);
   width: 20px;
   height: 20px;
-  background-image: url(../../images/close_button.png);
+  background-image: url("../../images/close_button.png");
   border: none;
   fill: #fff;
   background-color: transparent;
@@ -48,27 +48,7 @@
   transform: scale(2);
   cursor: pointer;
 }
-
-.item_modal__caption {
-  background-color: #fff;
-  font-size: 20px;
-  line-height: 24px;
-  font-weight: 700;
-  padding: 20px;
-  box-sizing: border-box;
-  border-radius: 0 0 20px 20px;
-}
-
-.item_modal__caption_name {
-  color: #000;
-  margin-bottom: 10px;
-}
-
-.item_modal__caption_weather {
-  color: #000;
-}
-
-.item_modal__delete-button {
+.modal__delete-button_visible {
   visibility: visible;
   font-family: "CabinetGrotesk-Bold", sans-serif;
   font-weight: 700;
@@ -79,16 +59,50 @@
   background-color: transparent;
   cursor: pointer;
   text-align: left;
-  position: relative;
   left: 350px;
   top: -50px;
   height: 0;
 }
-
-.item_modal__delete-button_hidden {
+.modal__delete-button_hidden {
   visibility: hidden;
 }
 
-.item_modal__delete-button:hover {
+.item_modal__caption {
+  background-color: #fff;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 0 0 20px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item_modal__caption_name {
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.item_modal__caption_weather {
+  color: #000;
+}
+/* .item_modal__delete_button {
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #ff4d00;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  text-align: left;
+  left: 350px;
+  top: -50px;
+  height: 0;
+} */
+
+.item_modal__delete_button:hover {
   cursor: pointer;
 }
+
