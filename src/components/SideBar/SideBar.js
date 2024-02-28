@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import "./SideBar.css";
 
 const SideBar = ({ onEditProfileModal, onLogOut }) => {
   const currentUser = useContext(CurrentUserContext);
