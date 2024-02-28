@@ -4,14 +4,11 @@ import { useContext } from "react";
 import React from "react";
 
 const ItemModal = ({ selectedCard, onClose, handleDeleteCard }) => {
-  const { currentUser } = useContext(CurrentUserContext);
-  console.log(currentUser);
+  const currentUser = useContext(CurrentUserContext);
 
   const isOwner =
     selectedCard && currentUser && selectedCard.owner === currentUser._id;
-  console.log(isOwner);
-  console.log(selectedCard);
-  console.log(currentUser);
+
   const itemModalDeleteButton = ` ${
     isOwner ? "modal__delete-button_visible" : "modal__delete-button_hidden"
   }`;
