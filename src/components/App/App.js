@@ -369,7 +369,6 @@ function App() {
             handleCloseModal={handleCloseModal}
             onClose={handleCloseModal}
             isOpen={activeModal === "editProfile"}
-            //onEditProfile={handleEditProfileModal} (onEditProfileSubmit)
             onSubmit={handleEditProfileSubmit}
             currentUser={currentUser}
             buttonText={isLoading ? "Saving..." : "Save"}
