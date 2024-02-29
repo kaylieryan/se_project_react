@@ -26,7 +26,7 @@
 }
 
 .modal__title {
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 30px;
 }
 
@@ -56,15 +56,6 @@
   width: 100%;
   display: flex;
   margin-bottom: 20px;
-}
-
-.modal__label_input {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.modal__input_wrapper {
-  width: 100%;
 }
 
 .modal__label_input {
@@ -122,4 +113,8 @@
 .modal__submit_button:hover {
   background-color: rgba(0, 0, 0, 0.6);
   transition: background-color 1s;
+}
+
+.modal__submit_button_two_hidden {
+  visibility: hidden;
 }
