@@ -59,7 +59,8 @@ const RegisterModal = ({
       buttonText="Next"
       buttonTextTwo="or Log In"
       handleClickTwo={handleLoginClick}
-      classNameTwo={"modal__submit_button"}>
+      classNameTwo={"modal__submit_button"}
+      >
       <div className="modal__text-inputs">
         <label className="modal__label">
           Email*
