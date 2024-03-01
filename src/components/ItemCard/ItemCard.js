@@ -16,7 +16,7 @@ const ItemCard = ({ item, onSelectCard, onCardLike }) => {
   return (
     <div className="clothing_card">
       <div className="card_name">
-        {" "}
+        {/* {" "} */}
         {item.name}
         <button
           type="button"
