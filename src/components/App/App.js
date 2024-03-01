@@ -144,7 +144,8 @@ function App() {
   const handleAddItemSubmit = (values) => {
     postClothingItems(values)
       .then((data) => {
-        setClothingItems([data, ...clothingItems]);
+        // setClothingItems([data, ...clothingItems]);
+        setClothingItems((clothingItems) => [data.data, ...clothingItems]);
         handleCloseModal();
       })
       .catch((error) => {
@@ -215,6 +216,7 @@ function App() {
   useEffect(() => {
     fetchItems()
       .then((data) => {
+        console.log(data);
         setClothingItems(data);
       })
       .catch((error) => {
