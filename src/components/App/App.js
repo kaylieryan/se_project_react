@@ -215,7 +215,7 @@ function App() {
   useEffect(() => {
     fetchItems()
       .then((data) => {
-        setClothingItems(data.data);
+        setClothingItems(data);
       })
       .catch((error) => {
         console.error(error);
@@ -271,7 +271,6 @@ function App() {
         console.error(err);
       });
   }, []);
-  console.log(currentTemperatureUnit);
 
   //------------------------------HTML-------------------------------------
 
@@ -310,7 +309,7 @@ function App() {
               onLogout={handleLogout}></Profile>
           </ProtectedRoute>
           <Route path="*">
-            {loggedIn ? <Redirect to="/" /> : <Redirect to="/" />}
+            {loggedIn ? <Redirect to="/profile" /> : <Redirect to="/" />}
           </Route>
         </Switch>
         <Footer />
