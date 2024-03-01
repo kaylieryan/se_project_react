@@ -1,4 +1,4 @@
-export const weatherOptions = [
+export const WeatherOptions = [
   {
     url: require("../images/day/sunny.svg").default,
     day: true,
@@ -62,8 +62,8 @@ export const weatherOptions = [
   },
 ];
 
-export const latitude = 40.7128;
-export const longitude = 74.006;
+export const latitude = 35.19;
+export const longitude = 111.65;
 export const APIkey = "1c8987e8045de68b6d5f029698cad7f6";
 
 export const baseUrl = "http://localhost:3001";

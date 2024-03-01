@@ -4,12 +4,17 @@ import "./Main.css";
 import { useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherTemp, onSelectCard, clothingItems, isLoggedIn }) {
-  console.log("clothing items");
-  console.log(clothingItems);
-  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+const Main = ({
+  weatherTemp,
+  onSelectCard,
+  clothingItems,
+  isLoggedIn,
+  onCardLike,
+}) => {
+  const currentTemperatureUnit = useContext(CurrentTemperatureUnitContext);
   console.log(currentTemperatureUnit);
-  const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
+  const temp =
+    weatherTemp?.temperature?.[currentTemperatureUnit.currentTemperatureUnit];
 
   const getWeatherType = () => {
     if (currentTemperatureUnit === "C") {
@@ -34,11 +39,9 @@ function Main({ weatherTemp, onSelectCard, clothingItems, isLoggedIn }) {
   const weatherType = getWeatherType();
   console.log(weatherType);
 
-  const filteredCards = clothingItems.filter((item) => {
-    return (
-      item?.weather?.toLowerCase() === weatherType ||
-      item?.weatherType?.toLowerCase() === weatherType
-    );
+  const filteredCards = clothingItems?.filter((item) => {
+    console.log(item);
+    return item?.weather?.toLowerCase() === weatherType;
   });
 
   return (
@@ -46,7 +49,8 @@ function Main({ weatherTemp, onSelectCard, clothingItems, isLoggedIn }) {
       <WeatherCard day={true} type="fog" weatherTemp={temp} />
       <section className="clothing" id="clothing-section">
         <div className="clothing__title">
-          Today is {temp}°{currentTemperatureUnit} / You may want to wear:{" "}
+          Today is {temp}°{currentTemperatureUnit.currentTemperatureUnit} / You
+          may want to wear:
         </div>
         <div className="clothing__items">
           {filteredCards.map((item) => (
@@ -55,12 +59,13 @@ function Main({ weatherTemp, onSelectCard, clothingItems, isLoggedIn }) {
               onSelectCard={onSelectCard}
               key={item._id}
               isLoggedIn={isLoggedIn}
+              onCardLike={onCardLike}
             />
           ))}
         </div>
       </section>
     </main>
   );
-}
+};
 
 export default Main;
