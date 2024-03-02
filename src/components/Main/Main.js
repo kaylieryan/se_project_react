@@ -39,10 +39,15 @@ const Main = ({
   const weatherType = getWeatherType();
   console.log(weatherType);
 
-  const filteredCards = clothingItems?.filter((item) => {
-    console.log(item);
-    return item?.weather?.toLowerCase() === weatherType;
-  });
+  const filteredCards =
+    clothingItems?.filter((item) => {
+      console.log("Item weather:", item.weather);
+      console.log("Weather type:", weatherType);
+
+      return item?.weather?.toLowerCase() === weatherType;
+    }) || [];
+
+    console.log("Filtered cards:", filteredCards);
 
   return (
     <main className="main">

@@ -94,8 +94,8 @@ function App() {
 
   const handleRegisterSubmit = (email, password, name, avatar) => {
     postSignUp({ email, password, name, avatar })
-      .then((res) => {
-        setCurrentUser(res.data);
+      .then((resBody) => {
+        setCurrentUser(resBody.data);
         handleCloseModal();
         handleLogin(email, password);
       })
@@ -143,9 +143,9 @@ function App() {
 
   const handleAddItemSubmit = (values) => {
     postClothingItems(values)
-      .then((data) => {
+      .then((resBody) => {
         // setClothingItems([data, ...clothingItems]);
-        setClothingItems((clothingItems) => [data.data, ...clothingItems]);
+        setClothingItems((clothingItems) => [resBody.data, ...clothingItems]);
         handleCloseModal();
       })
       .catch((error) => {
@@ -216,7 +216,7 @@ function App() {
   useEffect(() => {
     fetchItems()
       .then((data) => {
-        console.log(data);
+        console.log("Fetched items", data);
         setClothingItems(data);
       })
       .catch((error) => {
