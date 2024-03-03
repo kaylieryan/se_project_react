@@ -1,7 +1,6 @@
 import { baseUrl } from "./constants";
 import { processServerResponse } from "./constants";
 
-
 // export function request(url, options) {
 //   return fetch(url, options).then(processServerResponse);
 // }
@@ -56,10 +55,10 @@ export const addCardLike = (item) => {
   }).then(processServerResponse);
 };
 
-
 //DELETE items
 
 export function removeItems(selectedCard) {
+  console.log("calling removeItems");
   const deleteItems = fetch(`${baseUrl}/items/${selectedCard._id}`, {
     method: "DELETE",
     headers: {

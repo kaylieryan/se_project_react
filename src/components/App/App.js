@@ -173,8 +173,8 @@ function App() {
   const handleDeleteCard = (selectedCard) => {
     removeItems(selectedCard)
       .then(() => {
-        const newClothingItems = clothingItems.filter((cards) => {
-          return cards._id !== selectedCard;
+        const newClothingItems = clothingItems.filter((card) => {
+          return card._id !== selectedCard._id;
         });
         setClothingItems(newClothingItems);
         handleCloseModal();
@@ -186,6 +186,7 @@ function App() {
         setIsLoading(false);
       });
   };
+
   const handleDeleteConfirmationModal = (selectedCard) => {
     setActiveModal("confirmation-opened");
     setSelectedCard(selectedCard);
@@ -216,7 +217,6 @@ function App() {
   useEffect(() => {
     fetchItems()
       .then((data) => {
-        console.log("Fetched items", data);
         setClothingItems(data);
       })
       .catch((error) => {
