@@ -33,17 +33,25 @@
 }
 
 .switch__temp-F {
+  font-family: "CabinetGrotesk-Bold";
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
   position: absolute;
-  top: -15px;
+  top: -7px;
   right: 37px;
   color: white;
 }
 
 .switch__temp-C {
+  font-family: "CabinetGrotesk-Bold";
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
   position: absolute;
   color: white;
-  top: -15px;
-  right: 9px;
+  top: -7px;
+  right: 11px;
 }
 
 .switch__active {
