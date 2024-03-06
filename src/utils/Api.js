@@ -18,17 +18,6 @@ export const fetchItems = () => {
   return getItems;
 };
 
-// export function fetchItems() {
-//   const getItems = fetch(`${baseUrl}/items`, {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//       authorization: `Bearer ${localStorage.getItem("jwt")}`,
-//     },
-//   }).then(processServerResponse);
-//   return getItems;
-// }
-
 //POST items
 
 export const postClothingItems = ({ name, imageUrl, weather }) => {
@@ -52,7 +41,7 @@ export const addCardLike = (item) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
-  }).then(processServerResponse);
+  }).then((res) => processServerResponse(res));
 };
 
 //DELETE items
@@ -76,5 +65,5 @@ export const removeCardLike = (item) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
-  }).then(processServerResponse);
+  }).then((res) => processServerResponse(res));
 };
