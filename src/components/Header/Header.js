@@ -30,7 +30,7 @@ const Header = ({
         </Link>
 
         <p className="header__date">
-          {currentDate}, {weatherLocation}
+          {currentDate}
         </p>
       </div>
 
