@@ -118,18 +118,22 @@ function App() {
     !isLiked
       ? addCardLike(item, currentUser._id, token)
           .then((updatedCard) => {
+            console.log("updatedCard", updatedCard);
+            console.log("clothingItems", clothingItems);
             setClothingItems((clothingItems) =>
               clothingItems.map((card) =>
-                card._id === item._id ? updatedCard : card
+                card._id === item._id ? updatedCard.data : card
               )
             );
           })
           .catch((err) => console.log(err))
       : removeCardLike(item, currentUser._id, token)
           .then((updatedCard) => {
+            console.log("updatedCard", updatedCard);
+            console.log("clothingItems", clothingItems);
             setClothingItems((clothingItems) =>
               clothingItems.map((card) =>
-                card._id === item._id ? updatedCard : card
+                card._id === item._id ? updatedCard.data : card
               )
             );
           })
