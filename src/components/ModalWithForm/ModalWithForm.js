@@ -9,7 +9,7 @@ function ModalWithForm({
   name,
   onSubmit,
   handleClickTwo,
-  classNameTwo = "modal__submit_two_hidden",
+  classNameTwo = "modal__submit_button_two_hidden",
 }) {
   return (
     <div className={`modal modal_type_${name}`}>
@@ -20,7 +20,7 @@ function ModalWithForm({
           className="modal__form_close_button"
         />
         <h3 className="modal__title">{title}</h3>
-        <form onSubmit={onSubmit} /*className="modal__form"*/>
+        <form onSubmit={onSubmit}>
           {children}
           <button type="submit" className="modal__submit_button">
             {buttonText}

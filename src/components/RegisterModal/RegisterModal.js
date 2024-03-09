@@ -57,9 +57,9 @@ const RegisterModal = ({
       modalName={"register"}
       onSubmit={handleRegisterSubmit}
       buttonText="Next"
-      buttonTextTwo="or Log In"
+      buttonTextTwo="or Log in"
       handleClickTwo={handleLoginClick}
-      classNameTwo={"modal__submit_button"}
+      classNameTwo={"modal__submit-button"}
       >
       <div className="modal__text-inputs">
         <label className="modal__label">
@@ -101,9 +101,9 @@ const RegisterModal = ({
         <label className="modal__label">
           Avatar URL
           <input
-            type="text"
-            name="avatar"
-            placeholder="Avatar"
+            type="url"
+            name="name"
+            placeholder="Avatar URL"
             minLength="1"
             maxLength="256"
             className="modal__input"

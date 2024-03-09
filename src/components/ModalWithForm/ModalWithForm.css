@@ -110,6 +110,11 @@
   cursor: pointer;
 }
 
+.modal__submit-button {
+  background-color: #fff;
+  border: none;
+}
+
 .modal__submit_button:hover {
   background-color: rgba(0, 0, 0, 0.6);
   transition: background-color 1s;
