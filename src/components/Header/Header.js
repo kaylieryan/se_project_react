@@ -8,7 +8,6 @@ import { useContext } from "react";
 
 const Header = ({
   onCreateModal,
-  weatherLocation,
   onLoginModal,
   onRegisterModal,
   loggedIn,
@@ -20,7 +19,7 @@ const Header = ({
   const currentUser = useContext(CurrentUserContext);
   const avatar = currentUser ? currentUser.avatar : undefined;
   const showAvatar = avatar !== "" ? true : false;
-  const name = currentUser ? currentUser.name : "";
+  const name = currentUser.name;
 
   return (
     <header className="header">
@@ -53,7 +52,7 @@ const Header = ({
               <div>
                 <img
                   className="header__avatar"
-                  src={avatarLogo}
+                  src={avatar}
                   alt="Avatar icon"
                 />
               </div>
