@@ -148,7 +148,6 @@ function App() {
   const handleAddItemSubmit = (values) => {
     postClothingItems(values)
       .then((resBody) => {
-        // setClothingItems([data, ...clothingItems]);
         setClothingItems((clothingItems) => [resBody.data, ...clothingItems]);
         handleCloseModal();
       })
@@ -289,7 +288,6 @@ function App() {
           onLoginModal={handleLoginModal}
           onRegisterModal={handleRegisterModal}
           loggedIn={loggedIn}
-          city={location}
         />
         <Switch>
           <Route exact path="/">
