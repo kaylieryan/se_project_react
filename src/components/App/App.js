@@ -146,6 +146,7 @@ function App() {
   };
 
   const handleAddItemSubmit = (values) => {
+    setIsLoading(true);
     postClothingItems(values)
       .then((resBody) => {
         setClothingItems((clothingItems) => [resBody.data, ...clothingItems]);
