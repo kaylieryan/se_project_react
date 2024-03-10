@@ -39,6 +39,7 @@ const AddItemModal = ({ handleCloseModal, handleAddItemSubmit, isOpen, buttonTex
     <ModalWithForm
       title={"New Garment"}
       onClose={handleCloseModal}
+      buttonText={buttonText}
       isOpen={isOpen}
       onSubmit={handleSubmit}>
       <div className="modal__input_wrapper">
@@ -53,7 +54,6 @@ const AddItemModal = ({ handleCloseModal, handleAddItemSubmit, isOpen, buttonTex
             className="modal__input"
             value={name}
             onChange={handleNameChange}
-            buttonText={buttonText}
           />
         </label>
       </div>
