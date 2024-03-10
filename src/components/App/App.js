@@ -324,7 +324,7 @@ function App() {
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "create"}
             handleAddItemSubmit={handleAddItemSubmit}
-            buttonText={isLoading ? "Saving..." : "Save"}
+            buttonText={isLoading ? "Saving..." : "Add Garment"}
           />
         )}
 
