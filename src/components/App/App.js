@@ -288,6 +288,7 @@ function App() {
           onLoginModal={handleLoginModal}
           onRegisterModal={handleRegisterModal}
           loggedIn={loggedIn}
+          location={location}
         />
         <Switch>
           <Route exact path="/">

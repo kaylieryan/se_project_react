@@ -1,5 +1,4 @@
 import "./Header.css";
-import avatarLogo from "../../images/avatar.svg";
 import wtwrLogo from "../../images/logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
@@ -8,6 +7,7 @@ import { useContext } from "react";
 
 const Header = ({
   onCreateModal,
+  location,
   onLoginModal,
   onRegisterModal,
   loggedIn,
@@ -29,7 +29,7 @@ const Header = ({
         </Link>
 
         <p className="header__date">
-          {currentDate}
+          {currentDate}, {location}
         </p>
       </div>
 
