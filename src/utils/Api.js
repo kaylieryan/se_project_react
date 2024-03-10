@@ -1,10 +1,6 @@
 import { baseUrl } from "./constants";
 import { processServerResponse } from "./constants";
 
-// export function request(url, options) {
-//   return fetch(url, options).then(processServerResponse);
-// }
-
 //GET items
 export const fetchItems = () => {
   const getItems = fetch(`${baseUrl}/items`, {
