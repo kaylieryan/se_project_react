@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const AddItemModal = ({ handleCloseModal, handleAddItemSubmit, isOpen }) => {
+const AddItemModal = ({ handleCloseModal, handleAddItemSubmit, isOpen, buttonText }) => {
   const token = localStorage.getItem("jwt");
 
   const [name, setName] = useState("");
@@ -53,6 +53,7 @@ const AddItemModal = ({ handleCloseModal, handleAddItemSubmit, isOpen }) => {
             className="modal__input"
             value={name}
             onChange={handleNameChange}
+            buttonText={buttonText}
           />
         </label>
       </div>
