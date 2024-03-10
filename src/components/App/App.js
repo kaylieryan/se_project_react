@@ -175,6 +175,7 @@ function App() {
   };
 
   const handleDeleteCard = (selectedCard) => {
+    setIsLoading(true);
     removeItems(selectedCard)
       .then(() => {
         const newClothingItems = clothingItems.filter((card) => {
