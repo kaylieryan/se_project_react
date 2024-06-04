@@ -66,7 +66,11 @@ export const latitude = 35.19;
 export const longitude = 111.65;
 export const APIkey = "1c8987e8045de68b6d5f029698cad7f6";
 
-export const baseUrl = "http://localhost:3001";
+
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwr.verymad.net"
+    : "http://localhost:3001";
 
 export const processServerResponse = (res) => {
   if (res.ok) {
